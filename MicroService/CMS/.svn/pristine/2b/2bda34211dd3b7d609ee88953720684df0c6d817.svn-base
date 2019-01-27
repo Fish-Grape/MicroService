@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Feng.Basic;
+using Feng.CMS.IService;
+using Feng.CMS.Model;
+using Feng.CMS.Model.Navigation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.CMS.Controllers.v1
+{
+    /// <summary>
+    /// 菜单导航
+    /// </summary>
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    [ApiController]
+    public class Cms_MenuController : ControllerBase
+    {
+        public readonly ICms_MenuService MenuService;
+
+        public Cms_MenuController(ICms_MenuService menuService)
+        {
+            MenuService = menuService;
+        }
+
+        /// <summary>
+        /// 获取导航菜单
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="classFy"></param>
+        /// <returns></returns>
+        [HttpGet, Route("querylist")]
+        public ReturnResult<PageList<Cms_MenuModel>> GetCms_Menu(string classFy,int pageSize, int pageIndex)
+        {
+            return MenuService.GetMenuList(Utils.Extensions.Plat, classFy, pageSize, pageIndex);
+        }
+
+        /// <summary>
+        /// 新增导航菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, Route("add")]
+        public ReturnResult<ReturnCms_MenuModel> AddCms_Menu(AddCms_MenuModel model)
+        {
+            return MenuService.Insert(Utils.Extensions.Plat, model);
+        }
+
+        /// <summary>
+        /// 修改导航菜单
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost, Route("modify")]
+        public ReturnResult ModifyCms_Menu(ModifyCms_MenuModel model)
+        {
+            return MenuService.Change(Utils.Extensions.Plat, model);
+        }
+
+        /// <summary>
+        /// 删除导航菜单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("del")]
+        public ReturnResult RemoveCms_Menu(int id)
+        {
+            return MenuService.Delete(Utils.Extensions.Plat, id);
+        }
+    }
+}

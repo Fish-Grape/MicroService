@@ -1,0 +1,25 @@
+﻿using Feng.Basic;
+using Feng.Product.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.IService
+{
+    public interface IProductService
+    {
+        ReturnResult<dynamic> AddProduct(string platKey, AddProductModel model);
+
+        //ReturnResult RemoveProductById(string platKey, string pid);
+
+        ReturnResult ModifyProductStatus(string platKey, string pid,bool isPublish);
+
+        //ReturnResult ModifyProduct(string platKey, AddProductModel model);
+
+        ReturnResult<PageList<QueryProductModel>> QueryProductList(string platKey,int pageSize,int pageIndex,string productName,string cid,string brandName, string startDate, string endDate,int isPublish);
+
+        //ReturnResult<ProductModel> QueryProductById(string platKey,string pid);
+
+
+    }
+}

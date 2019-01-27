@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Feng.Product.Model
+{
+    public class ShoppingCartModel : AddShoppingCartModel
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string goodsName { get; set; }
+        /// <summary>
+        /// 销售价
+        /// </summary>
+        public decimal salesPrice { get; set; }
+    }
+    public class AddShoppingCartModel
+    {
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public int user_id { get; set; }
+        /// <summary>
+        /// 下单用户
+        /// </summary>
+        public string user_name { get; set; }
+        /// <summary>
+        /// 商店编号
+        /// </summary>
+        public string shop_id { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int number { get; set; }
+        /// <summary>
+        /// 产品编码
+        /// </summary>
+        public string product_code { get; set; }
+        /// <summary>
+        /// 是否有效
+        /// </summary>
+        public bool is_product_exists { get; set; }
+    }
+
+    public class ModifyProNumModel
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int number { get; set; }
+    }
+}

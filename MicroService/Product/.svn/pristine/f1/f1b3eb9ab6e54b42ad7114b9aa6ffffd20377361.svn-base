@@ -1,0 +1,55 @@
+﻿using SqlSugar;
+using System;
+
+namespace Feng.Product.Entity
+{
+    [SugarTable("product_sku")]
+    public class product_sku
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        [SugarColumn(IsPrimaryKey = true)]
+        public string id { get; set; }
+        /// <summary>
+        /// 平台
+        /// </summary>
+        public string platkey { get; set; }
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productid { get; set; }
+
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int count { get; set; }
+
+        /// <summary>
+        /// 价格
+        /// </summary>
+        public decimal price { get; set; }
+
+        /// <summary>
+        /// SKU名称
+        /// </summary>
+        public string name { get; set; }
+        /// <summary>
+        /// 属性字符串
+        /// </summary>
+        public string attr_json { get; set; }
+        /// <summary>
+        /// 条码
+        /// </summary>
+        public string barcode { get; set; }
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        public DateTime addtime { get; set; }
+        /// <summary>
+        /// 周期,单位：天
+        /// </summary>
+        public int extfield { get; set; }
+    }
+    
+}

@@ -1,0 +1,47 @@
+﻿using SqlSugar;
+using System;
+
+namespace Feng.Product.Entity
+{
+    [SugarTable("shopping_cart")]
+    public class shopping_cart
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        [SugarColumn(IsPrimaryKey = true)]
+        public string id { get; set; }
+        /// <summary>
+        /// 应用Key
+        /// </summary>
+        public string platkey { get; set; }
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public int user_id { get; set; }
+        /// <summary>
+        /// 下单用户
+        /// </summary>
+        public string user_name { get; set; }
+        /// <summary>
+        /// 是否有效
+        /// </summary>
+        public bool is_product_exists { get; set; }
+        /// <summary>
+        /// 商店编号
+        /// </summary>
+        public string shop_id { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int number { get; set; }
+        /// <summary>
+        /// 产品编码
+        /// </summary>
+        public string product_code { get; set; }
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        public DateTime create_time { get; set; }
+    }
+}

@@ -1,0 +1,53 @@
+﻿using System.Collections.Generic;
+using Feng.Basic;
+using Feng.CMS.IService;
+using Feng.CMS.Model;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.CMS.Controllers.web.v1
+{
+    /// <summary>
+    /// 新闻管理
+    /// </summary>
+    [ApiVersion("1.0")]
+    [Route("{area}/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    public class NewsWebController : ControllerBase
+    {
+        public readonly INewsService _newsService;
+        public NewsWebController(INewsService newsService)
+        {
+            _newsService = newsService;
+        }
+        /// <summary>
+        /// 查询新闻栏目
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("menuview")]
+        public ReturnResult<List<NewsCateModel>> QueryNewsCategory(int id=0)
+        {
+            return _newsService.QueryNewsCategory(Utils.Extensions.Plat,id);
+        }
+        /// <summary>
+        /// 查询新闻
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("query")]
+        public ReturnResult<NewsModel> QueryNewsById( int id)
+        {
+            return _newsService.QueryNewsById(Utils.Extensions.Plat, id);
+        }
+
+        /// <summary>
+        /// 查询文章列表
+        /// </summary>
+        /// <param name="cateid">分类id</param>
+        /// <returns></returns>
+        [HttpGet,Route("querylist")]
+        public ReturnResult<List<QueryNewsListModel>> QueryNewsList(int cateid=-1)
+        {
+            return _newsService.QueryNewsList(Utils.Extensions.Plat,cateid);
+        }
+    }
+}

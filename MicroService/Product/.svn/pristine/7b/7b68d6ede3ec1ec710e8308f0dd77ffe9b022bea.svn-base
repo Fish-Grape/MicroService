@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Product</name>
+    </assembly>
+    <members>
+        <member name="M:Feng.Product.AutofacModuleRegister.Load(Autofac.ContainerBuilder)">
+            <summary>
+            装载autofac方式注册
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="P:Feng.Product.Startup.AutofacContainer">
+            <summary>
+            AutofacDI容器
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

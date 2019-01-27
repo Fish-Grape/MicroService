@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Feng.Utils" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Product.Entity\Feng.Product.Entity.csproj" />
+    <ProjectReference Include="..\Feng.Product.IService\Feng.Product.IService.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.CMS</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.CMS.Controllers.web.v1.AdvertsWebController">
+            <summary>
+            广告管理
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.web.v1.AdvertsWebController.QueryAdvertByPosition(System.String)">
+            <summary>
+            根据广告位查询广告
+            </summary>
+            <param name="posId"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.web.v1.Cms_MenuWebController">
+            <summary>
+            前台
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.web.v1.Cms_MenuWebController.GetCms_Menu(System.String)">
+            <summary>
+            获取导航菜单
+            </summary>
+            <param name="classFy"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.web.v1.NewsWebController">
+            <summary>
+            新闻管理
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.web.v1.NewsWebController.QueryNewsCategory(System.Int32)">
+            <summary>
+            查询新闻栏目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.web.v1.NewsWebController.QueryNewsById(System.Int32)">
+            <summary>
+            查询新闻
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.web.v1.NewsWebController.QueryNewsList(System.Int32)">
+            <summary>
+            查询文章列表
+            </summary>
+            <param name="cateid">分类id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.v1.AdvertsController">
+            <summary>
+            广告管理
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.AddAdvertPosition(Feng.CMS.Model.AddAdvertPositionModel)">
+            <summary>
+            添加广告位
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.RemoveAdvertPosition(System.String)">
+            <summary>
+            根据编号删除广告位
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.ModifyAdvertPosition(Feng.CMS.Model.AdvertPositionModel)">
+            <summary>
+            修改广告位
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.QueryAllAdvertPosition(System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            分页获取广告位
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <param name="title"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.ModifyAdvertPositionStatus(System.String,System.Boolean)">
+            <summary>
+            修改广告位状态
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.AddAdvert(Feng.CMS.Model.AddAdvertModel)">
+            <summary>
+            添加广告
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.RemoveAdvert(System.Int32)">
+            <summary>
+            根据编号删除广告
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.ModifyAdvert(Feng.CMS.Model.AdvertModel)">
+            <summary>
+            修改广告信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.QueryAdvertByPosition(System.String)">
+            <summary>
+            根据广告位查询广告
+            </summary>
+            <param name="posId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.AdvertsController.ModifyAdvertStatus(System.Int32,System.Boolean)">
+            <summary>
+            修改广告状态
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.v1.Cms_MenuController">
+            <summary>
+            菜单导航
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Cms_MenuController.GetCms_Menu(System.String)">
+            <summary>
+            获取导航菜单
+            </summary>
+            <param name="classFy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Cms_MenuController.AddCms_Menu(Feng.CMS.Model.Navigation.AddCms_MenuModel)">
+            <summary>
+            新增导航菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Cms_MenuController.ModifyCms_Menu(Feng.CMS.Model.Navigation.ModifyCms_MenuModel)">
+            <summary>
+            修改导航菜单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Cms_MenuController.RemoveCms_Menu(System.Int32)">
+            <summary>
+            删除导航菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.v1.Menu_ClassfyController">
+            <summary>
+            菜单导航
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Menu_ClassfyController.GetMenu_Classfy">
+            <summary>
+            获取导航分类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Menu_ClassfyController.AddMenu_Classfy(Feng.CMS.Model.Navigation.AddMenu_ClassfyModel)">
+            <summary>
+            新增导航分类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Menu_ClassfyController.ModifyMenu_Classfy(Feng.CMS.Model.Navigation.ModifyMenu_ClassfyModel)">
+            <summary>
+            修改导航分类
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.Menu_ClassfyController.RemoveMenu_Classfy(System.Int32)">
+            <summary>
+            删除导航分类
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.CMS.Controllers.v1.NewsController">
+            <summary>
+            新闻管理
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.AddNewsCategory(Feng.CMS.Model.AddNewsCategoryModel)">
+            <summary>
+            添加新闻分类
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.RemoveNewsCategory(System.Int32)">
+            <summary>
+            移除新闻分类
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.ModifyNewsCategory(Feng.CMS.Model.NewsCategoryModel)">
+            <summary>
+            修改新闻栏目
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.QueryNewsCategory">
+            <summary>
+            查询新闻栏目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.AddNews(Feng.CMS.Model.AddNewsModel)">
+            <summary>
+            添加新闻
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.RemoveNews(System.Int32)">
+            <summary>
+            删除新闻
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.ModifyNews(Feng.CMS.Model.NewsModel)">
+            <summary>
+            修改新闻
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.QueryNewsById(System.Int32)">
+            <summary>
+            查询新闻
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.QueryNewsList(System.Int32,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            分页查询文章列表
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <param name="title"></param>
+            <param name="ispub"></param>
+            <param name="cateid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Controllers.v1.NewsController.PublishNews(System.Int32)">
+            <summary>
+            发布
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.CMS.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

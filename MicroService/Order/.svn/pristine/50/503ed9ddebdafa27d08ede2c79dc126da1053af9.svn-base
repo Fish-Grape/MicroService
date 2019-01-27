@@ -1,0 +1,17 @@
+﻿using Feng.Basic;
+using Feng.Order.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Order.IService
+{
+    public interface IOrderDetailService
+    {
+        ReturnResult<ReturnOrdersDetailModel> AddOrderDetail(string platkey, AddOrdersDetailModel model);
+        ReturnResult DeleteOrderDetail(string platkey, string id);
+        ReturnResult<List<OrdersDetailModel>> QueryOrders(string platkey);
+        ReturnResult<OrdersDetailModel> QueryOrderById(string platkey, string id);
+        ReturnResult<PageList<OrdersDetailModel>> QueryOrdersList(string platkey, int pageSize, int pageIndex);
+    }
+}

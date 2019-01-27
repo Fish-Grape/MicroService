@@ -1,0 +1,8 @@
+﻿using System;
+
+namespace Feng.Order.Service
+{
+    public class Class1
+    {
+    }
+}

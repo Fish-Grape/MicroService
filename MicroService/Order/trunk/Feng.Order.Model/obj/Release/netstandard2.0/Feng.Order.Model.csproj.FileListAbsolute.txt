@@ -1,0 +1,9 @@
+E:\工作目录\Order\trunk\Feng.Order.Model\bin\Release\netstandard2.0\Feng.Order.Model.deps.json
+E:\工作目录\Order\trunk\Feng.Order.Model\bin\Release\netstandard2.0\Feng.Order.Model.dll
+E:\工作目录\Order\trunk\Feng.Order.Model\bin\Release\netstandard2.0\Feng.Order.Model.pdb
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.csprojAssemblyReference.cache
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.csproj.CoreCompileInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.AssemblyInfoInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.AssemblyInfo.cs
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.dll
+E:\工作目录\Order\trunk\Feng.Order.Model\obj\Release\netstandard2.0\Feng.Order.Model.pdb

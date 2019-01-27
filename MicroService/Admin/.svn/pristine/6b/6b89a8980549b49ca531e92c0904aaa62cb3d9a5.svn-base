@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Feng.Core" Version="1.0.0" />
+    <PackageReference Include="Feng.DbContext" Version="1.0.1" />
+    <PackageReference Include="Feng.Redis" Version="1.0.0" />
+    <PackageReference Include="Feng.Utils" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Admin.Entity\Feng.Admin.Entity.csproj" />
+    <ProjectReference Include="..\Feng.Admin.IService\Feng.Admin.IService.csproj" />
+  </ItemGroup>
+
+</Project>

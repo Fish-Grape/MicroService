@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Admin</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Admin.Controllers.ApiController">
+            <summary>
+            Api资源控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ApiController.#ctor(Feng.Admin.IService.IApiService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="apiService"></param>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ApiController.QueryApiList(Feng.Admin.Model.QueryApiModel)">
+            <summary>
+            查询Api资源
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ApiController.SetApi(Feng.Admin.Model.ApiModel)">
+            <summary>
+            设置Api资源
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.ConfigController">
+            <summary>
+            配置管理控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.#ctor(Feng.Admin.IService.IConfigService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configService"></param>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.QueryAppList">
+            <summary>
+            查看所有项目组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.SetAppInfo(Feng.Admin.Model.AppModel)">
+            <summary>
+            设置项目组信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.QueryAppProjectList(Feng.Admin.Model.QueryAppProjectModel)">
+            <summary>
+            查询配置项目
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.SetAppProjectInfo(Feng.Admin.Model.AppProjectModel)">
+            <summary>
+            设置配置项目
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.QueryAppConfigList(Feng.Admin.Model.QueryAppConfigModel)">
+            <summary>
+            查询配置信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ConfigController.SetAppConfigInfo(Feng.Admin.Model.AppConfigModel)">
+            <summary>
+            设置配置信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.HomeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Feng.Admin.Controllers.MenuController">
+            <summary>
+            菜单控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MenuController.QueryAllMenus(Feng.Admin.Model.QueryAllMenusModel)">
+            <summary>
+            查询平台菜单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MenuController.SetPlatform(Feng.Admin.Model.MenuModel)">
+            <summary>
+            设置平台菜单信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MenuController.QueryUserMenus">
+            <summary>
+            查询用户菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.MicroController">
+            <summary>
+            微服务配置
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MicroController.QueryServiceList(Feng.Admin.Model.QueryServiceModel)">
+            <summary>
+            查询服务发现全部服务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MicroController.SetServiceInfo(Feng.Admin.Model.ServiceModel)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MicroController.DeleteService(Feng.Admin.Model.DeleteServiceModel)">
+            <summary>
+            服务移除
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MicroController.GetApiGatewayConfiguration">
+            <summary>
+            查询网关配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.MicroController.SetApiGatewayConfiguration">
+            <summary>
+            设置网关配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.PlatformController">
+            <summary>
+            平台控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.PlatformController.QueryPlatforms">
+            <summary>
+            查询平台列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.PlatformController.SetPlatform(Feng.Admin.Model.PlatformModel)">
+            <summary>
+            设置平台信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.ProjectController">
+            <summary>
+            项目控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ProjectController.QueryProject">
+            <summary>
+            查看项目列表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.ProjectController.SetProject(Feng.Admin.Model.ProjectModel)">
+            <summary>
+            设置项目信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.RoleController">
+            <summary>
+            角色控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.RoleController.#ctor(Feng.Admin.IService.IRoleService)">
+            <summary>
+            
+            </summary>
+            <param name="roleService"></param>
+        </member>
+        <member name="M:Feng.Admin.Controllers.RoleController.QueryAllRoles(Feng.Admin.Model.QueryRolesByPlatformModel)">
+            <summary>
+            查询所有角色
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.RoleController.QueryRoles(Feng.Admin.Model.QueryRolesByPlatformModel)">
+            <summary>
+            查询可用角色
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.RoleController.QueryRoleInfo(Feng.Admin.Model.QueryRolesByIdModel)">
+            <summary>
+            查询角色权限信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.RoleController.SetRole(Feng.Admin.Model.ModifyRolesModel)">
+            <summary>
+            设置角色信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Admin.Controllers.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Controllers.UserController.#ctor(Feng.Admin.IService.IUserService)">
+            <summary>
+            
+            </summary>
+            <param name="userService"></param>
+        </member>
+        <member name="M:Feng.Admin.Controllers.UserController.QueryUsers(Feng.Admin.Model.QueryUsersModel)">
+            <summary>
+            查询用户列表
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Controllers.UserController.AddOrUpdateUser(Feng.Admin.Model.AddOrUpdateUserModel)">
+            <summary>
+            设置用户信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Admin.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Admin.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

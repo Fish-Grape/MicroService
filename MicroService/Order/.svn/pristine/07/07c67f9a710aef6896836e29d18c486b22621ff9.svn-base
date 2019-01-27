@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Feng.Basic;
+using Feng.Order.IService;
+using Feng.Order.Model;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.Order.Controllers
+{
+    /// <summary>
+    /// 订单管理
+    /// </summary>
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    [ApiController]
+    public class OrdersController : ControllerBase
+    {
+        private readonly IOrderService orderService;
+
+        public OrdersController(IOrderService orderService)
+        {
+            this.orderService = orderService;
+        }
+
+        /// <summary>
+        /// 新增订单
+        /// </summary>
+        /// <param name="addOrders"></param>
+        /// <returns></returns>
+        [HttpPost,Route("add")]
+        public ReturnResult<ReturnOrdersModel> AddOrder([FromBody]AddOrdersModel addOrders)
+        {
+            return orderService.AddOrder(Utils.Extensions.Plat, addOrders);
+        }
+
+        ///// <summary>
+        ///// 根据id删除订单
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[HttpGet,Route("del")]
+        //public ReturnResult DeleteOrderById(string id)
+        //{
+        //    return orderService.DeleteOrder(Utils.Extensions.Plat, id);
+        //}
+
+        /// <summary>
+        /// 审核订单
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost,Route("approve")]
+        public ReturnResult ApproveOrder([FromBody]ApproveOrdersModel model)
+        {
+            return orderService.ApproveOrder(Utils.Extensions.Plat, model);
+        }
+
+        /// <summary>
+        /// 取消订单
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost, Route("cancel")]
+        public ReturnResult CancelOrder([FromBody]CancelOrdersModel model)
+        {
+            return orderService.CancelOrder(Utils.Extensions.Plat, model);
+        }
+
+        /// <summary>
+        /// 查询订单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("querylist")]
+        public ReturnResult<List<OrdersModel>> QueryOrder()
+        {
+            return orderService.QueryOrders(Utils.Extensions.Plat);
+        }
+
+        /// <summary>
+        /// 分页查询订单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("query_pagelist")]
+        public ReturnResult<PageList<OrdersModel>> QueryPageOrder(int pageSize, int pageIndex)
+        {
+            return orderService.QueryOrdersList(Utils.Extensions.Plat, pageSize, pageIndex);
+        }
+
+        /// <summary>
+        /// 根据id查询订单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("query_byid")]
+        public ReturnResult<OrdersModel> QueryOrderById(string id)
+        {
+            return orderService.QueryOrderById(Utils.Extensions.Plat, id);
+        }
+    }
+}

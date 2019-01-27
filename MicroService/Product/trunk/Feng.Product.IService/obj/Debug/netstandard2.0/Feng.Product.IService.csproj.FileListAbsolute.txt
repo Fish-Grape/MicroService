@@ -1,0 +1,12 @@
+E:\工作目录\Product\trunk\Feng.Product.IService\bin\Debug\netstandard2.0\Feng.Product.IService.deps.json
+E:\工作目录\Product\trunk\Feng.Product.IService\bin\Debug\netstandard2.0\Feng.Product.IService.dll
+E:\工作目录\Product\trunk\Feng.Product.IService\bin\Debug\netstandard2.0\Feng.Product.IService.pdb
+E:\工作目录\Product\trunk\Feng.Product.IService\bin\Debug\netstandard2.0\Feng.Product.Model.dll
+E:\工作目录\Product\trunk\Feng.Product.IService\bin\Debug\netstandard2.0\Feng.Product.Model.pdb
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.csprojAssemblyReference.cache
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.csproj.CoreCompileInputs.cache
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.AssemblyInfoInputs.cache
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.AssemblyInfo.cs
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.csproj.CopyComplete
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.dll
+E:\工作目录\Product\trunk\Feng.Product.IService\obj\Debug\netstandard2.0\Feng.Product.IService.pdb

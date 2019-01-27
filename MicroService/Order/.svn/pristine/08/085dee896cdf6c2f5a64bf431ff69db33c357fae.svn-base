@@ -1,0 +1,201 @@
+﻿using Feng.Basic;
+using Feng.Core;
+using Feng.DbContext;
+using Feng.Order.Entity;
+using Feng.Order.IService;
+using Feng.Order.Model;
+using Microsoft.Extensions.Logging;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+
+namespace Feng.Order.Service
+{
+    public partial class OrderService : IOrderService
+    {
+        public readonly IRepositoryBase<orders> _repositoryBase;
+        private readonly IJsonHelper _jsonHelper;
+        private readonly IUser _user;
+        private readonly ILogger<OrderService> logger;
+
+        public OrderService(IRepositoryBase<orders> repositoryBase, IJsonHelper jsonHelper, IUser user, ILogger<OrderService> logger)
+        {
+            _repositoryBase = repositoryBase;
+            _jsonHelper = jsonHelper;
+            _user = user;
+            this.logger = logger;
+        }
+
+        public ReturnResult ApproveOrder(string platkey, ApproveOrdersModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+            orders item = new orders
+            {
+                id = model.id,
+                order_status_id = model.order_statusId,
+                order_status=model.order_status,
+                approve_by = model.approve_by,
+                approve_time = DateTime.Now
+            };
+            int count = _repositoryBase.DbContext.Updateable(item).
+                UpdateColumns(it => new {
+                    it.order_status_id,
+                    it.order_status,
+                    it.approve_by,
+                    it.approve_time
+                }).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult ModifyOrder(string platkey, ModifyOrdersModel model)
+        {
+            orders orders = new orders()
+            {
+                id=model.id,
+                final_price=model.finalPrice,
+                email=model.userInfo.email,
+                phone=model.userInfo.phone,
+                remark=model.userInfo.remark,
+                province=model.delivery.province,
+                city=model.delivery.city,
+                area=model.delivery.area,
+                address=model.delivery.address,
+                region_id=model.delivery.region_id
+            };
+
+            int result = _repositoryBase.DbContext.Updateable(orders)
+                .UpdateColumns(a=>new {
+                    a.id,
+                    a.final_price,
+                    a.email,
+                    a.phone,
+                    a.remark,
+                    a.province,
+                    a.city,
+                    a.area,
+                    a.address,
+                    a.region_id
+                }).ExecuteCommand();
+
+            if (result <= 0)
+                return new ReturnResult<List<OrdersPrimaryModel>>((int)ErrorCodeEnum.Error_SqlData, null, "修改失败!");
+            return new ReturnResult<List<OrdersPrimaryModel>>();
+        }
+
+        public ReturnResult<OrdersModel> QueryOrderById(string platkey, string id)
+        {
+            OrdersModel item =_repositoryBase.DbContext.Queryable<orders>()
+                         .Where(a => a.platkey == platkey)
+                         .WhereIF(!string.IsNullOrEmpty(id), a => a.id == id)
+                         .OrderBy(a => a.create_time, OrderByType.Desc)
+                         .Select(a => new OrdersModel()
+                         {
+                             ordersInfo = new OrdersInfoModel(),
+                             queryUser = new QueryUserModel(),
+                             delivery=new Delivery()
+                         }).First();
+            if (item == null)
+                return new ReturnResult<OrdersModel>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            List<OrdersDetailModel> details = _repositoryBase.DbContext.Queryable<orders_detail>()
+               .Where(a => a.platkey == platkey)
+               .Where(a => a.order_id == id)
+               .OrderBy(a => a.create_time, OrderByType.Desc)
+               .Select(a => new OrdersDetailModel
+               {
+                   user_id = a.user_id,
+                   user_name = a.user_name,
+                   category = a.category,
+                   product_name = a.product_name,
+                   product_image = a.product_image,
+                   short_desc = a.short_desc,
+                   description = a.description,
+                   final_price = a.final_price,
+                   original_price = a.original_price,
+                   create_time = a.create_time,
+                   attr_json = a.attr_json,
+               }).ToList();
+
+            if (details != null && details.Count > 0)
+            {
+                details.ForEach(x =>
+                 {
+                     item.OrdersDetailsList.Add(x);
+                 });
+            }
+            return new ReturnResult<OrdersModel>(item);
+        }
+
+        public ReturnResult<List<OrdersPrimaryModel>> QueryOrders(string platkey, int userId=-1 , int order_status = -1)
+        {
+            List<OrdersPrimaryModel> list = GetModelList(platkey, userId, order_status).ToList();
+            if (list == null || list.Count == 0)
+                return new ReturnResult<List<OrdersPrimaryModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            return new ReturnResult<List<OrdersPrimaryModel>>(list);
+        }
+
+        public ReturnResult<PageList<OrdersPrimaryModel>> QueryOrdersList(string platkey, int pageSize, int pageIndex,int order_status = -1, int userId = -1)
+        {
+            int totalNumber = 0;
+            List<OrdersPrimaryModel> list = GetModelList(platkey,userId,order_status).ToPageList(pageIndex, pageSize, ref totalNumber);
+            if (list == null || list.Count == 0)
+                return new ReturnResult<PageList<OrdersPrimaryModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            PageList<OrdersPrimaryModel> page = new PageList<OrdersPrimaryModel>();
+            page.TotalCount = totalNumber;
+            page.PageSize = pageSize;
+            page.Page = pageIndex;
+            list.ForEach(x => {
+                page.DataList.Add(x);
+            });
+
+            return new ReturnResult<PageList<OrdersPrimaryModel>>(page);
+        }
+
+        /// <summary>
+        /// 获取结果集
+        /// </summary>
+        /// <param name="platkey"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private ISugarQueryable<OrdersPrimaryModel> GetModelList(string platkey, int userId = -1, int order_status = -1)
+        {
+            var result = _repositoryBase.DbContext.Queryable<orders, or_status>((a,b)=> new object[]{
+                JoinType.Left,a.order_status_id==b.status_id && b.status_type=="OrderStatus"
+            })
+                .WhereIF(userId != -1, a => a.user_id == userId)
+                .WhereIF(order_status !=-1, a=>a.order_status_id == order_status)
+                .Where((a, b) => a.platkey == platkey)
+                .OrderBy((a, b) => a.create_time, OrderByType.Desc)
+                .Select((a, b) => new OrdersPrimaryModel
+                {
+                    id = a.id,
+                    user_id = a.user_id,
+                    user_name = a.user_name,
+                    order_statusId=b.status_id,
+                    order_status = b.status_val,
+                    final_price = a.final_price,
+                    create_time = a.create_time,
+                });
+            return result;
+        }
+
+        /// <summary>
+        /// 获取状态信息
+        /// </summary>
+        /// <param name="status_id"></param>
+        /// <param name="status_type"></param>
+        /// <returns></returns>
+        public string GetStatusByIdAndType(int status_id,string status_type)
+        {
+            return _repositoryBase.DbContext.Queryable<or_status>()
+                .Where(a => a.status_id == status_id && a.status_type == status_type)
+                .Select(a => a.status_val).First();
+        }
+
+
+    }
+}

@@ -1,0 +1,14 @@
+E:\工作目录\Pay\trunk\Feng.Pay\bin\Debug\netcoreapp2.1\Feng.Pay.deps.json
+E:\工作目录\Pay\trunk\Feng.Pay\bin\Debug\netcoreapp2.1\Feng.Pay.runtimeconfig.json
+E:\工作目录\Pay\trunk\Feng.Pay\bin\Debug\netcoreapp2.1\Feng.Pay.runtimeconfig.dev.json
+E:\工作目录\Pay\trunk\Feng.Pay\bin\Debug\netcoreapp2.1\Feng.Pay.dll
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.csprojAssemblyReference.cache
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.csproj.CoreCompileInputs.cache
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.RazorAssemblyInfo.cache
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.RazorAssemblyInfo.cs
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.AssemblyInfoInputs.cache
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.AssemblyInfo.cs
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.RazorTargetAssemblyInfo.cache
+E:\工作目录\Pay\trunk\Feng.Pay\bin\Debug\netcoreapp2.1\Feng.Pay.pdb
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.dll
+E:\工作目录\Pay\trunk\Feng.Pay\obj\Debug\netcoreapp2.1\Feng.Pay.pdb

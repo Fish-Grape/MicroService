@@ -1,0 +1,12 @@
+E:\工作目录\CMS\trunk\Feng.CMS.Model\bin\Debug\netstandard2.0\Feng.CMS.Model.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS.Model\bin\Debug\netstandard2.0\Feng.CMS.Model.dll
+E:\工作目录\CMS\trunk\Feng.CMS.Model\bin\Debug\netstandard2.0\Feng.CMS.Model.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.csproj.CoreCompileInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.AssemblyInfoInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.AssemblyInfo.cs
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.dll
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.pdb
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Model.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Model.dll
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Model.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.Model\obj\Debug\netstandard2.0\Feng.CMS.Model.csprojAssemblyReference.cache

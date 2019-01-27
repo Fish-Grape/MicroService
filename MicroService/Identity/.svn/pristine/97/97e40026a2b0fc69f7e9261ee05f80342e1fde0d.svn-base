@@ -1,0 +1,93 @@
+﻿using Feng.Basic;
+using Feng.Core.Config;
+using Feng.Core.Exceptions;
+using Feng.Identity.Entity;
+using Feng.Identity.IService;
+using Feng.Identity.Model.Auth;
+using Feng.Redis;
+using Feng.Utils;
+using Feng.Utils.Helpers;
+using Microsoft.Extensions.Logging;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Feng.Identity.Service
+{
+    public class AuthService : IAuthService
+    {
+        private readonly IAuthRepository _authRepository;
+        private readonly IConfig _config;
+        private readonly ILogger<AuthService> _logger;
+
+        private readonly SqlSugarClient _dbContext;
+        private readonly RedisClient _redisClient;
+
+
+        public AuthService(
+            IAuthRepository authRepository,
+            IConfig config, 
+            ILogger<AuthService> logger,
+            SqlSugarClient dbContext,
+            RedisClient redisClient) {
+            _config = config;
+            _logger = logger;
+            _dbContext = dbContext;
+            _redisClient = redisClient;
+            _authRepository = authRepository;
+        }
+
+
+
+        public async Task<ReturnResult<LoginReturnModel>> LoginAsync(LoginModel model)
+        {
+            var rediscontect = _config.StringGet("RedisDefaultServer");
+            var redis = _redisClient.GetDatabase(rediscontect, 5);
+            var kv = await redis.StringGetAsync($"ImgCode:{model.Guid}");
+            if (kv.IsNullOrEmpty || kv.ToString().ToLower() != model.ImgCode.ToLower())
+                throw new FengException("GO_2003", "图形验证码错误");
+
+            // 用户验证
+            var userInfo = await _dbContext.Queryable<UserInfo>().Where(it => it.UserName == model.UserName).FirstAsync();
+            if (userInfo == null)
+                throw new FengException("GO_4007", "账号不存在");
+            if (userInfo.State != 1)
+                throw new FengException("GO_4008", "账号状态异常");
+            if (userInfo.Password != Encrypt.SHA256(model.Password + userInfo.Salt))
+                throw new FengException("GO_4009", "账号或密码错误");
+
+            // 用户角色
+            var roleList = await _dbContext.Queryable<RoleInfo, UserRoleInfo>((role, urole) => new object[] { JoinType.Inner, role.Id == urole.RoleId })
+                 .Where((role, urole) => urole.Uid == userInfo.Id)
+                 .Where((role, urole) => role.IsDel == false)
+                 .Select((role, urole) => new { role.Key })
+                 .ToListAsync();
+
+            // token返回
+            var token = _authRepository.CreateAccessToken(new UserTokenModel
+            {
+                Email = userInfo.Email,
+                Id = userInfo.Id,
+                Mobile = userInfo.Mobile,
+                RealName = userInfo.RealName,
+            }, roleList.Select(it => it.Key).ToList());
+
+
+
+            return new ReturnResult<LoginReturnModel>(new LoginReturnModel() {
+                Data = new
+                {
+                    AccessToken = $"Bearer {token}",
+                    Expire = DateTimeOffset.Now.AddHours(4).ToUnixTimeSeconds(),
+                    RealName = userInfo.RealName.SafeString(),
+                    Mobile = userInfo.Mobile.SafeString(),
+                    userInfo.Id
+                }
+            });
+            
+        }
+    }
+}

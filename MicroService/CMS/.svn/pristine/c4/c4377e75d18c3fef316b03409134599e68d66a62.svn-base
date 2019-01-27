@@ -1,0 +1,58 @@
+{
+  "JwtAuthorize": {
+    "Secret": "ZNaLNzBznVw0cVctWVP8PG8KeU1v9Y7u",
+    "Issuer": "Feng",
+    "Audience": "aone",
+    "PolicyName": "permission",
+    "DefaultScheme": "Bearer",
+    "IsHttps": false,
+    "RequireExpirationTime": true,
+    "MySqlConnectionString": "server=192.168.1.145;database=feng;uid=alion;pwd=Alion_2018;",
+    "ProjectName": "Feng.CMS",
+    "RefreshInteval": 300
+  },
+  "SqlSugarClient": {
+    "ConnectionString": "server=192.168.1.145;database=feng.cms;uid=alion;pwd=Alion_2018;",
+    "DbType": "MySql",
+    "InitKeyType": "Attribute",
+    "IsAutoCloseConnection": false
+  },
+  "ConfigService": {
+    "AppId": "CoreFeng",
+    "AppSercet": "CoreFeng@2018",
+    "RedisConnectionString": "",
+    "RedisListener": false,
+    "RefreshInteval": 300,
+    "ServerUrl": "http://192.168.1.145:5000",
+    "UseServiceDiscovery": false,
+    "ServiceName": "conf_api",
+    "NamespaceName": "Feng.CMS",
+    "Env": "dev"
+  },
+  "EventBus": {
+    "RabbitMQ": {
+      "HostName": "192.168.1.145",
+      "Port": 5672,
+      "UserName": "Alion",
+      "Password": "Alion_2018",
+      "QueueName": "Feng.CMS"
+    }
+  },
+  "ErrorCodeService": {
+    "RefreshInteval": 1800,
+    "ServerUrl": "http://192.168.1.145:5555"
+  },
+  "ServiceDiscovery": {
+    "ServiceName": "cms_api_test",
+    "Version": "1.0.1",
+    "HealthCheckTemplate": "http://192.168.1.36:5012/status",
+    "Endpoint": "http://192.168.1.36:5012",
+    "Consul": {
+      "HttpEndpoint": "http://192.168.1.145:8500",
+      "DnsEndpoint": {
+        "Address": "192.168.1.145",
+        "Port": 8500
+      }
+    }
+  }
+}

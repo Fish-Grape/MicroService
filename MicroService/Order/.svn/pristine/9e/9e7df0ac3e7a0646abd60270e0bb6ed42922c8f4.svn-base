@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Order.Model
+{
+    /// <summary>
+    /// 订单状态
+    /// </summary>
+    public enum OrderStatus
+    {
+        已关闭 = 0,
+        已审核 = 1,
+        未审核 = 2,
+        待付款 = 3,
+        待发货 = 4,
+        待收货 = 5,
+        待评价 = 6
+    }
+
+    /// <summary>
+    /// 支付状态
+    /// </summary>
+    public enum PayStatus
+    {
+        未支付 = 0,
+        已支付 = 1
+    }
+
+    /// <summary>
+    /// 支付方式
+    /// </summary>
+    public enum PayMethod
+    {
+        支付宝 = 0,
+        微信 = 1,
+        银联 = 2
+    }
+}

@@ -1,0 +1,343 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Model
+{
+    public class ProductModel : AddProductModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 媒体资源
+        /// </summary>
+        public List<ProductMediaModel> mediaList { get; set; }
+    }
+
+    #region 后台模型
+    public class AddProductModel : ProductPrimaryModel
+    {
+        public AddProductModel() {
+            //mediaList = new List<ProductMediaModel>();
+            attrList = new List<ProductAttrModel>();
+            skuList = new List<ProductSkuModel>();
+        }
+        /// <summary>
+        /// 属性信息
+        /// 属性值信息
+        /// </summary>
+        public List<ProductAttrModel> attrList { get; set; }
+
+        /// <summary>
+        /// 规格信息
+        /// </summary>
+        public List<ProductSkuModel> skuList { get; set; }
+        //list<[attrId:attrValueId,attrId:attrValueId],count,price,skuName,barCode>
+    }
+
+    /// <summary>
+    /// 修改产品基本信息模型
+    /// </summary>
+    public class UpdatePrimaryModel : ProductPrimaryModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string id { get; set; }
+    }
+
+    /// <summary>
+    /// 产品基本信息
+    /// </summary>
+    public class ProductPrimaryModel {
+        /// <summary>
+        /// 产品编码
+        /// </summary>
+        public string productCode { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string goodsName { get; set; }
+        /// <summary>
+        /// 广告语
+        /// </summary>
+        public string shortDesc { get; set; }
+        /// <summary>
+        /// 产品分类编号
+        /// </summary>
+        public string categoryId { get; set; }
+        /// <summary>
+        /// 品牌编号
+        /// </summary>
+        public int brandId { get; set; }
+        /// <summary>
+        /// 是否上架
+        /// </summary>
+        public bool isPublish { get; set; }
+        /// <summary>
+        /// 销售价
+        /// </summary>
+        public decimal salesPrice { get; set; }
+        /// <summary>
+        /// 市场价
+        /// </summary>
+        public decimal marketPrice { get; set; }
+        /// <summary>
+        /// 成本价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 毛重 公斤
+        /// </summary>
+        public float weight { get; set; }
+        /// <summary>
+        /// 长 mm
+        /// </summary>
+        public int xxx { get; set; }
+        /// <summary>
+        /// 宽 mm
+        /// </summary>
+        public int yyy { get; set; }
+        /// <summary>
+        /// 高 mm
+        /// </summary>
+        public int zzz { get; set; }
+        /// <summary>
+        /// 密度 g/cm3
+        /// </summary>
+        public double density { get; set; }
+        /// <summary>
+        /// 产品描述
+        /// </summary>
+        public string description { get; set; }
+    }
+
+    public class ProductMediaModel
+    {
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 媒体类型(0图片,1视频)
+        /// </summary>
+        public int mediaType { get; set; }
+
+        /// <summary>
+        /// 链接
+        /// </summary>
+        public string mediaUrl { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int displayOrder { get; set; }
+    }
+
+    public class ProductAttrModel {
+        /// <summary>
+        /// 属性编号
+        /// </summary>
+        public string attributeId { get; set; }
+        /// <summary>
+        /// 属性值编号,多个用“,”分割
+        /// </summary>
+        public string attributeValueId { get; set; }
+    }
+
+    /// <summary>
+    /// 产品属性模型
+    /// </summary>
+    public class UpdateProductAttrModel : ProductAttrModel
+    {
+        /// <summary>
+        /// 主键id
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// skuId
+        /// </summary>
+        public string skuId { get; set; }
+    }
+
+    public class UpdateSkuModel : ProductSkuModel
+    {
+        /// <summary>
+        /// 主键id
+        /// </summary>
+        public string id { get; set; }
+    }
+
+    public class ProductSkuModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int count { get; set; }
+
+        /// <summary>
+        /// 销售价格
+        /// </summary>
+        public decimal price { get; set; }
+
+        /// <summary>
+        /// SKU名称
+        /// </summary>
+        public string name { get; set; }
+        /// <summary>
+        /// 属性字符串
+        /// </summary>
+        public string attrJson { get; set; }
+        /// <summary>
+        /// 条码
+        /// </summary>
+        public string barCode { get; set; }
+    }
+
+    public class QueryProductModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string productName { get; set; }
+        /// <summary>
+        /// 品牌编号
+        /// </summary>
+        public string brandName { get; set; }
+        /// <summary>
+        /// 是否上架
+        /// </summary>
+        public bool isPublish { get; set; }
+        /// <summary>
+        /// 销售价
+        /// </summary>
+        public decimal salesPrice { get; set; }
+        /// <summary>
+        /// 市场价
+        /// </summary>
+        public decimal marketPrice { get; set; }
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        public DateTime addTime { get; set; }
+    }
+    #endregion 后台模型
+
+
+    #region 前台模型
+    public class ProductWebModel
+    {
+        public ProductWebModel()
+        {
+            SalesAttrList = new List<ProductAttrWebModel>();
+            NoSalesAttrList = new List<ProductAttrWebModel>();
+            productSkus = new List<ProductSkuModel>();
+        }
+        /// <summary>
+        /// 产品Id
+        /// </summary>
+        public string ProductId { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string ProductName { get; set; }
+        /// <summary>
+        /// 产品描述
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
+        /// 分类Id
+        /// </summary>
+        public string CategoryId { get; set; }
+        /// <summary>
+        /// 销售属性信息
+        /// </summary>
+        public List<ProductAttrWebModel> SalesAttrList { get; set; }
+        /// <summary>
+        /// 非销售属性信息
+        /// </summary>
+        public List<ProductAttrWebModel> NoSalesAttrList { get; set; }
+        /// <summary>
+        /// 产品sku信息
+        /// </summary>
+        public List<ProductSkuModel> productSkus { get; set; }
+        /// <summary>
+        /// 产品媒体信息
+        /// </summary>
+        public List<ProductMediaModel> productMedias { get; set; }
+    }
+    public class ProductAttrWebModel
+    {
+        public ProductAttrWebModel()
+        {
+            AttributeValues = new List<AttributeValueModel>();
+        }
+        /// <summary>
+        /// 产品Id
+        /// </summary>
+        public string ProductId { get; set; }
+        /// <summary>
+        /// 属性编号
+        /// </summary>
+        public string AttributeId { get; set; }
+        /// <summary>
+        /// 是否必选
+        /// </summary>
+        public bool is_must { get; set; }
+        /// <summary>
+        /// 是否销售属性
+        /// </summary>
+        public bool is_sales { get; set; }
+        /// <summary>
+        /// 是否多选
+        /// </summary>
+        public bool is_multi { get; set; }
+        /// <summary>
+        /// 属性名称
+        /// </summary>
+        public string AttributeName { get; set; }
+        /// <summary>
+        /// 属性值,多个用“,”分割
+        /// </summary>
+        public List<AttributeValueModel> AttributeValues { get; set; }
+    }
+
+    public class QueryProductWebModel
+    {
+        /// <summary>
+        /// 分类Id
+        /// </summary>
+        public string CategoryId { get; set; }
+        /// <summary>
+        /// 分类名称
+        /// </summary>
+        public string CategoryName { get; set; }
+        /// <summary>
+        /// 父类编号,为空或0为一级
+        /// </summary>
+        public string ParentId { get; set; }
+        /// <summary>
+        /// 产品列表
+        /// </summary>
+        public List<ProductWebModel> Products { get; set; }
+        /// <summary>
+        /// 子分类
+        /// </summary>
+        public List<QueryProductWebModel> Children { get; set; }
+    }
+    #endregion
+}

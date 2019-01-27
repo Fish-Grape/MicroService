@@ -1,0 +1,24 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Error",
+      "System": "Error",
+      "Microsoft": "Error"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tracing": {
+    "SystemName": "Feng.CMS.Api",
+    "IgnoredRoutesRegexPatterns": [ "/status", "/$", "/config" ]
+  },
+  "Swagger": {
+    "DocName": "cms_api",
+    "Title": "内容管理",
+    "Description": "内容管理系统",
+    "ContactName": "gubin",
+    "ContactEmail": "auth@feng.com",
+    "Version": "v1.0.1",
+    "XmlFile": "Feng.CMS.xml"
+  }
+}

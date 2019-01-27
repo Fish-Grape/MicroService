@@ -1,0 +1,247 @@
+﻿using Feng.Basic;
+using Feng.Core;
+using Feng.DbContext;
+using Feng.Order.Entity;
+using Feng.Order.IService;
+using Feng.Order.Model;
+using Feng.Utils.Helpers;
+using SqlSugar;
+using StackExchange.Redis;
+using System;
+using System.Collections.Generic;
+
+namespace Feng.Order.Service
+{
+    public class OrderService : IOrderService
+    {
+        public readonly IRepositoryBase<orders> _repositoryBase;
+        private readonly IJsonHelper _jsonHelper;
+        private readonly IUser _user;
+
+        public OrderService(IRepositoryBase<orders> repositoryBase, IJsonHelper jsonHelper, IUser user)
+        {
+            _repositoryBase = repositoryBase;
+            _jsonHelper = jsonHelper;
+            _user = user;
+        }
+
+        public ReturnResult<ReturnOrdersModel> AddOrder(string platkey, AddOrdersModel model)
+        {
+            if (model == null)
+                return new ReturnResult<ReturnOrdersModel>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+            string strId = Id.ObjectId();
+            var result= _repositoryBase.DbContext.Ado.UseTran(() =>
+            {
+                orders item = new orders
+                {
+                    id = strId,
+                    platkey = platkey,
+                    order_code = Id.ObjectId(),
+                    user_id = model.user_id,
+                    user_name = model.user_name,
+                    phone = model.phone,
+                    email = model.email,
+                    remark = model.remark,
+                    is_disable = 0,
+                    order_status = "未确认",
+                    pay_status = "未支付",
+                    approve_by = "",
+                    pay_method = "",
+                    final_price = model.final_price,
+                    original_price = model.original_price,
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now,
+                    pay_time = null,
+                    approve_time = null,
+                    end_time = null,
+                    close_time = null
+                };
+                //新增主订单
+                _repositoryBase.DbContext.Insertable(item).ExecuteCommand();
+                //新增辅订单
+                List<orders_detail> details = new List<orders_detail>();
+                model.addOrdersDetailsList.ForEach(x =>
+                    details.Add(new orders_detail
+                    {
+                        id=Id.ObjectId(),
+                        platkey=platkey,
+                        user_id = x.user_id,
+                        user_name = x.user_name,
+                        order_code = item.order_code,
+                        category = x.category,
+                        product_code = x.product_code,
+                        product_name = x.product_name,
+                        final_price = x.final_price,
+                        original_price = x.original_price,
+                        quantity = x.quantity,
+                        product_image = x.product_image,
+                        short_desc = x.short_desc,
+                        description = x.description,
+                        attr_json = x.attr_json,
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    })
+                );
+                 _repositoryBase.DbContext.Insertable(details.ToArray()).ExecuteCommand();
+            }
+            );
+            if (result.Data)
+                return new ReturnResult<ReturnOrdersModel>(new ReturnOrdersModel() { id = strId });
+            else
+                return new ReturnResult<ReturnOrdersModel>(new ReturnOrdersModel() { id = "" });
+        }
+
+        public ReturnResult ApproveOrder(string platkey, ApproveOrdersModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+            orders item = new orders
+            {
+                id = model.id,
+                order_status = model.order_status,
+                approve_by = model.approve_by,
+                approve_time = DateTime.Now
+            };
+            int count = _repositoryBase.DbContext.Updateable(item).
+                UpdateColumns(it => new {
+                    it.order_status,
+                    it.approve_by,
+                    it.approve_time
+                }).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult CancelOrder(string platkey, CancelOrdersModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+            orders item = new orders
+            {
+                id = model.id,
+                order_status = "已关闭",
+                remark="用户取消订单",
+                is_disable = 1,
+                close_time=DateTime.Now,
+                update_time = DateTime.Now
+            };
+            int count = _repositoryBase.DbContext.Updateable(item).
+                UpdateColumns(it => new {
+                    it.order_status,
+                    it.remark,
+                    it.is_disable,
+                    it.close_time,
+                    it.update_time
+                }).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult DeleteOrder(string platkey, string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReturnResult<OrdersModel> QueryOrderById(string platkey, string id)
+        {
+            OrdersModel item = GetModelList(platkey, id).First();
+            if (item == null)
+                return new ReturnResult<OrdersModel>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            item.addOrdersDetailsList = new List<AddOrdersDetailModel>();
+            _repositoryBase.DbContext.Queryable<orders_detail>()
+               .Where(a => a.platkey == platkey)
+               .Where(a => a.id == id)
+               .OrderBy(a => a.create_time, OrderByType.Desc)
+               .Select(a => new OrdersDetailModel
+               {
+                   id = a.id,
+                   order_code = a.order_code,
+                   user_id = a.user_id,
+                   user_name = a.user_name,
+                   category = a.category,
+                   product_code = a.product_code,
+                   product_name = a.product_name,
+                   quantity = a.quantity,
+                   product_image = a.product_image,
+                   short_desc = a.short_desc,
+                   description = a.description,
+                   final_price = a.final_price,
+                   original_price = a.original_price,
+                   create_time = a.create_time,
+                   update_time = a.update_time,
+                   attr_json = a.attr_json
+               }).ToList().ForEach(x =>
+               {
+                   item.addOrdersDetailsList.Add(x);
+               });
+            return new ReturnResult<OrdersModel>(item);
+        }
+
+        public ReturnResult<List<OrdersModel>> QueryOrders(string platkey)
+        {
+            List<OrdersModel> list = GetModelList(platkey).ToList();
+            if (list == null || list.Count == 0)
+                return new ReturnResult<List<OrdersModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            return new ReturnResult<List<OrdersModel>>(list);
+        }
+
+        public ReturnResult<PageList<OrdersModel>> QueryOrdersList(string platkey, int pageSize, int pageIndex)
+        {
+            int totalNumber = 0;
+            List<OrdersModel> list = GetModelList(platkey).ToPageList(pageIndex,pageSize,ref totalNumber);
+            if (list == null || list.Count == 0)
+                return new ReturnResult<PageList<OrdersModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+            PageList<OrdersModel> page = new PageList<OrdersModel>();
+            page.TotalCount = totalNumber;
+            page.PageSize = pageSize;
+            page.Page = pageIndex;
+            list.ForEach(x => {
+                page.DataList.Add(x);
+            });
+
+            return new ReturnResult<PageList<OrdersModel>>(page);
+        }
+        /// <summary>
+        /// 获取结果集
+        /// </summary>
+        /// <param name="platkey"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private ISugarQueryable<OrdersModel> GetModelList(string platkey, string id="")
+        {
+            var result = _repositoryBase.DbContext.Queryable<orders>()
+                .Where(a => a.platkey == platkey)
+                .WhereIF(!string.IsNullOrEmpty(id), a => a.id == id)
+                .OrderBy(a => a.create_time, OrderByType.Desc)
+                .Select(a => new OrdersModel
+                {
+                    id = a.id,
+                    order_code = a.order_code,
+                    user_id = a.user_id,
+                    user_name = a.user_name,
+                    phone = a.phone,
+                    email = a.email,
+                    remark = a.remark,
+                    order_status = a.order_status,
+                    pay_status = a.pay_status,
+                    approve_by = a.approve_by,
+                    pay_method = a.pay_method,
+                    final_price = a.final_price,
+                    original_price = a.original_price,
+                    create_time = a.create_time,
+                    update_time = a.update_time,
+                    pay_time = a.pay_time,
+                    approve_time = a.approve_time,
+                    end_time = a.end_time,
+                    close_time = a.close_time
+                });
+            return result;
+        }
+    }
+}

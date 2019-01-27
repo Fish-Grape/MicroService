@@ -1,0 +1,256 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Model
+{
+    public class ModifyProductStatus {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 是否发布
+        /// </summary>
+        public bool isPublish { get; set; }
+    }
+
+
+
+
+
+
+    public class ProductModel : AddProductModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 媒体资源
+        /// </summary>
+        public List<ProductMediaModel> mediaList { get; set; }
+    }
+
+    #region 后台模型
+    public class AddProductModel : ProductPrimaryModel
+    {
+        public AddProductModel() {
+            //mediaList = new List<ProductMediaModel>();
+            attrList = new List<ProductAttrModel>();
+            skuList = new List<ProductSkuModel>();
+        }
+        /// <summary>
+        /// 属性信息
+        /// 属性值信息
+        /// </summary>
+        public List<ProductAttrModel> attrList { get; set; }
+
+        /// <summary>
+        /// 规格信息
+        /// </summary>
+        public List<ProductSkuModel> skuList { get; set; }
+        //list<[attrId:attrValueId,attrId:attrValueId],count,price,skuName,barCode>
+    }
+
+    /// <summary>
+    /// 修改产品基本信息模型
+    /// </summary>
+    public class UpdatePrimaryModel : ProductPrimaryModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string id { get; set; }
+    }
+
+    /// <summary>
+    /// 产品基本信息
+    /// </summary>
+    public class ProductPrimaryModel {
+        /// <summary>
+        /// 产品编码
+        /// </summary>
+        public string productCode { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string goodsName { get; set; }
+        /// <summary>
+        /// 广告语
+        /// </summary>
+        public string shortDesc { get; set; }
+        /// <summary>
+        /// 产品分类编号
+        /// </summary>
+        public string categoryId { get; set; }
+        /// <summary>
+        /// 品牌编号
+        /// </summary>
+        public int brandId { get; set; }
+        /// <summary>
+        /// 是否上架
+        /// </summary>
+        public bool isPublish { get; set; }
+        /// <summary>
+        /// 销售价
+        /// </summary>
+        public decimal salesPrice { get; set; }
+        /// <summary>
+        /// 市场价
+        /// </summary>
+        public decimal marketPrice { get; set; }
+        /// <summary>
+        /// 成本价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 毛重 公斤
+        /// </summary>
+        public float weight { get; set; }
+        /// <summary>
+        /// 长 mm
+        /// </summary>
+        public int xxx { get; set; }
+        /// <summary>
+        /// 宽 mm
+        /// </summary>
+        public int yyy { get; set; }
+        /// <summary>
+        /// 高 mm
+        /// </summary>
+        public int zzz { get; set; }
+        /// <summary>
+        /// 密度 g/cm3
+        /// </summary>
+        public double density { get; set; }
+        /// <summary>
+        /// 产品描述
+        /// </summary>
+        public string description { get; set; }
+    }
+
+    public class ProductMediaModel
+    {
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 媒体类型(0图片,1视频)
+        /// </summary>
+        public int mediaType { get; set; }
+
+        /// <summary>
+        /// 链接
+        /// </summary>
+        public string mediaUrl { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int displayOrder { get; set; }
+    }
+
+    public class ProductAttrModel : AddAttributeModel
+    {
+        /// <summary>
+        /// 属性编号
+        /// </summary>
+        public string attributeId { get; set; }
+        /// <summary>
+        /// 属性值编号
+        /// </summary>
+        public List<AttributeValueModel> attributeValues { get; set; }
+    }
+
+    /// <summary>
+    /// 产品属性模型
+    /// </summary>
+    public class UpdateProductAttrModel : ProductAttrModel
+    {
+        /// <summary>
+        /// 主键id
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// skuId
+        /// </summary>
+        public string skuId { get; set; }
+    }
+
+    public class UpdateSkuModel : ProductSkuModel
+    {
+        /// <summary>
+        /// 主键id
+        /// </summary>
+        public string id { get; set; }
+    }
+
+    public class ProductSkuModel
+    {
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int count { get; set; }
+
+        /// <summary>
+        /// 销售价格
+        /// </summary>
+        public decimal price { get; set; }
+
+        /// <summary>
+        /// SKU名称
+        /// </summary>
+        public string name { get; set; }
+        /// <summary>
+        /// 属性字符串
+        /// </summary>
+        public string attrJson { get; set; }
+        /// <summary>
+        /// 条码
+        /// </summary>
+        public string barCode { get; set; }
+        /// <summary>
+        /// 周期,单位：天
+        /// </summary>
+        public int periods { get; set; }
+    }
+
+    public class QueryProductModel
+    {
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string productName { get; set; }
+        /// <summary>
+        /// 品牌编号
+        /// </summary>
+        public string brandName { get; set; }
+        /// <summary>
+        /// 是否上架
+        /// </summary>
+        public bool isPublish { get; set; }
+        /// <summary>
+        /// 销售价
+        /// </summary>
+        public decimal salesPrice { get; set; }
+        /// <summary>
+        /// 市场价
+        /// </summary>
+        public decimal marketPrice { get; set; }
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        public DateTime addTime { get; set; }
+    }
+    #endregion 后台模型
+}

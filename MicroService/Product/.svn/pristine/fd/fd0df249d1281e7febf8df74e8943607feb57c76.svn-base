@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Feng.Product.Model
+{
+    public class ShoppingCartModel : AddShoppingCartModel
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public string id { get; set; }
+    }
+    public class AddShoppingCartModel 
+    {
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public int user_id { get; set; }
+        /// <summary>
+        /// 下单用户
+        /// </summary>
+        public string user_name { get; set; }
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 规格id
+        /// </summary>
+        public string skuId { get; set; }
+        /// <summary>
+        /// 产品单价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string goodsName { get; set; }
+        /// <summary>
+        /// 购物车详情
+        /// </summary>
+        public List<AddShoppingCartDetailModel> cartDetailModels { get; set; }
+    }
+
+    public class AddShoppingCartDetailModel {
+        /// <summary>
+        /// 附加属性值id
+        /// </summary>
+        public string extend_attr_id { get; set; }
+        /// <summary>
+        /// 属性值
+        /// </summary>
+        public string extend_attr_name { get; set; }
+    }
+
+    public class ModifyProNumModel
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int number { get; set; }
+    }
+}

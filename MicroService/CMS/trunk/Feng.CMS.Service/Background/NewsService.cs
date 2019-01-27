@@ -1,0 +1,286 @@
+﻿using Feng.Basic;
+using Feng.CMS.Entity;
+using Feng.CMS.IService;
+using Feng.CMS.Model;
+using Feng.Core;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.CMS.Service
+{
+    public partial class NewsService : INewsService
+    {
+        public readonly SqlSugarClient _dbContext;
+        private readonly IJsonHelper _jsonHelper;
+        private readonly IUser _user;
+        public NewsService(
+            SqlSugarClient dbContext,
+            IJsonHelper jsonHelper,
+            IUser user)
+        {
+            _dbContext = dbContext;
+            _jsonHelper = jsonHelper;
+            _user = user;
+        }
+
+        public ReturnResult<ReturnNewsModel> AddNews(string appid, AddNewsModel model)
+        {
+            if (model == null)
+                return new ReturnResult<ReturnNewsModel>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+
+            news item = new news() {
+                appid = appid,
+                title = model.title,
+                author = model.author,
+                source = model.source,
+                tags = model.tags,
+                ispub = model.isPublish,
+                menuid = model.categoryId,
+                imgurl = model.imageUrl,
+                recommend_type = model.recommendType,
+                shor_description = model.shorDescription,
+                order = model.displayOrder,
+                description = model.description,
+                addtime = DateTime.Now,
+                vister_count = 0
+            };
+
+            int id = _dbContext.Insertable(item).ExecuteReturnIdentity();
+
+            return new ReturnResult<ReturnNewsModel>(new ReturnNewsModel() { id = id });
+        }
+
+        public ReturnResult<ReturnNewsCategoryModel> AddNewsCategory(string appid, AddNewsCategoryModel model)
+        {
+            if (model == null)
+                return new ReturnResult<ReturnNewsCategoryModel>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+
+            news_menu item = new news_menu()
+            {
+                appid = appid,
+                title = model.title,
+                imgurl = model.imageUrl,
+                order = model.displayOrder,
+                description = model.description,
+                pid = model.parentId,
+                url = model.visitUrl
+            };
+
+            int id = _dbContext.Insertable(item).ExecuteReturnIdentity();
+
+            return new ReturnResult<ReturnNewsCategoryModel>(new ReturnNewsCategoryModel() { id = id });
+        }
+
+        public ReturnResult ModifyNews(string appid, NewsModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+
+            news item = new news()
+            {
+                id=model.id,
+                appid = appid,
+                title = model.title,
+                author = model.author,
+                source = model.source,
+                tags = model.tags,
+                ispub = model.isPublish,
+                menuid = model.categoryId,
+                imgurl = model.imageUrl,
+                recommend_type = model.recommendType,
+                shor_description = model.shorDescription,
+                order = model.displayOrder,
+                description = model.description,
+                addtime = model.addtime,
+                vister_count = model.visterCount
+            };
+
+            int count = _dbContext.Updateable(item).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult ModifyNewsCategory(string appid, NewsCategoryModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+
+            news_menu item = new news_menu()
+            {
+                appid = appid,
+                id = model.id,
+                title = model.title,
+                description = model.description,
+                order = model.displayOrder,
+                pid = model.parentId,
+                imgurl = model.imageUrl,
+                url = model.visitUrl
+            };
+
+            int count = _dbContext.Updateable(item).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult<NewsModel> QueryNewsById(string appid, int id)
+        {
+            var item = _dbContext.Queryable<news>()
+                .Where(n => n.appid == appid)
+                .Where(n => n.id == id)
+                .First();
+
+            if (item==null)
+                return new ReturnResult<NewsModel>((int)ErrorCodeEnum.Error_NoData,null,"没有找到数据!");
+
+            NewsModel model = new NewsModel()
+            {
+                id = item.id,
+                title = item.title,
+                author = item.author,
+                categoryId = item.menuid,
+                displayOrder = item.order,
+                isPublish = item.ispub,
+                imageUrl = item.imgurl,
+                addtime = item.addtime ?? DateTime.Now,
+                description = item.description,
+                recommendType = item.recommend_type,
+                shorDescription = item.shor_description,
+                source = item.source,
+                tags = item.tags,
+                visterCount = item.vister_count
+            };
+
+            return new ReturnResult<NewsModel>(model);
+        }
+
+        public ReturnResult<List<NewsCateModel>> QueryNewsCategory(string appid, int id = 0)
+        {
+            var list = _dbContext.Queryable<news_menu>()
+                .Where(n => n.appid == appid)
+                .OrderBy(n => n.order, OrderByType.Asc)
+                .ToList();
+
+            if (list.Count <= 0)
+                return new ReturnResult<List<NewsCateModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有找到数据!");
+
+            List<NewsCateModel> result =ReList(0, list);
+            result = id == 0 ? result : result.FindAll(a => a.value == id);
+            return new ReturnResult<List<NewsCateModel>>(result);
+        }
+
+
+        private List<NewsCateModel> ReList(int pid, List<news_menu> list) {
+            var child = list.FindAll(x => x.pid == pid);
+            if (child.Count <= 0)
+                return null;
+            List<NewsCateModel> result = new List<NewsCateModel>();
+
+            child.ForEach(x =>
+            {
+                NewsCateModel model = new NewsCateModel()
+                {
+                    label = x.title,
+                    value = x.id,
+                    visitUrl=x.url,
+                    children = ReList(x.id, list)
+                };
+                result.Add(model);
+            });
+            return result;
+        }
+        
+
+        public ReturnResult<PageList<QueryNewsListModel>> QueryNewsList(string appid, int pageSize, int pageIndex, string title, int ispub, int cateid)
+        {
+            PageList<QueryNewsListModel> page = new PageList<QueryNewsListModel>();
+            int totalNumber = 0;
+            var list = _dbContext.Queryable<news, news_menu>((a, b) =>
+                 new object[]{
+                    JoinType.Left,a.menuid==b.id
+                 })
+                .Where((a, b) => b.appid == appid)
+                .WhereIF(cateid > 0, (a, b) => b.id == cateid)
+                .WhereIF(!string.IsNullOrWhiteSpace(title), a => a.title.Contains(title))
+                .WhereIF(ispub >= 0, a => a.ispub == SqlFunc.IIF(ispub == 0, false, true))
+                .OrderBy((a, b) => b.order, OrderByType.Asc)
+                .OrderBy((a, b) => a.order, OrderByType.Asc)
+                .Select((a, b) => new QueryNewsListModel
+                {
+                    id = a.id,
+                    title = a.title,
+                    menu = b.title,
+                    author = a.author,
+                    isPublish = a.ispub,
+                    addtime = a.addtime.Value,
+                    visterCount = a.vister_count
+                })
+                .ToPageList(pageIndex, pageSize, ref totalNumber);
+
+            page.TotalCount = totalNumber;
+            page.PageSize = pageSize;
+            page.Page = pageIndex;
+
+            if (list.Count <= 0)
+            {
+                return new ReturnResult<PageList<QueryNewsListModel>>(page);
+            }
+
+            list.ForEach(x => {
+                page.DataList.Add(x);
+            });
+            
+            return new ReturnResult<PageList<QueryNewsListModel>>(page);
+        }
+
+        public ReturnResult RemoveNews(string appid, int id)
+        {
+            int count = _dbContext.Deleteable<news>()
+                .Where(a => a.id == id)
+                .Where(a => a.appid == appid)
+                .ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult RemoveNewsCategory(string appid, int id)
+        {
+            int count = _dbContext.Deleteable<news_menu>()
+                .Where(a => a.id == id)
+                .Where(a => a.appid == appid)
+                .ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult PublishNewsCategory(string appid, int id)
+        {
+            news item = new news()
+            {
+                id=id,
+                appid = appid,
+                ispub = true
+            };
+
+            int count = _dbContext.Updateable(item).UpdateColumns(it => new { it.ispub }).ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+    }
+}

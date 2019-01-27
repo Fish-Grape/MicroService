@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Feng.Redis" Version="1.0.0" />
+    <PackageReference Include="Feng.Utils" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Product.Entity\Feng.Product.Entity.csproj" />
+    <ProjectReference Include="..\Feng.Product.IService\Feng.Product.IService.csproj" />
+  </ItemGroup>
+
+</Project>

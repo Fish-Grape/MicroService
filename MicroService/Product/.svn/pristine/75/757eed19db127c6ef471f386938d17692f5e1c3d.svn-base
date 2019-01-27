@@ -1,0 +1,113 @@
+﻿using Feng.Basic;
+using Feng.Product.Entity;
+using Feng.Product.IService.Background;
+using Feng.Product.Model;
+using Feng.Utils.Helpers;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Service.Background
+{
+    public class ShoppingCartService : IShoppingCartService
+    {
+        public readonly SqlSugarClient _dbContext;
+        public ShoppingCartService(SqlSugarClient dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public ReturnResult<dynamic> AddToCart(string platKey, AddShoppingCartModel model)
+        {
+            if (model == null)
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+            string strId = Id.ObjectId();
+            var result =_dbContext.Ado.UseTran(() =>
+            {
+                shopping_cart cart = new shopping_cart()
+                {
+                    id= strId,
+                    platkey=platKey,
+                    user_id=model.user_id,
+                    user_name=model.user_name,
+                    shop_id=model.shop_id,
+                    is_product_exists=true,
+                    product_code=model.product_code,
+                    number=model.number,
+                    create_time=DateTime.Now
+                };
+                int count=_dbContext.Updateable(cart).WhereColumns(it=>new {
+                    it.user_id,
+                    it.product_code
+                }).ExecuteCommand();
+                if (count <= 0)
+                    _dbContext.Insertable(cart).ExecuteCommand();
+            });
+            if (result.Data)
+                return new ReturnResult<dynamic>(new { strId });
+            else
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Parameter_Missing, null, "添加失败!");
+        }
+
+        public ReturnResult ModifyProductInCartNum(string platKey, ModifyProNumModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+
+            shopping_cart cart = new shopping_cart()
+            {
+                id = model.id,
+                number = model.number
+            };
+            var result = _dbContext.Updateable(cart).UpdateColumns(it => new { it.number }).ExecuteCommand();
+            if (result <= 0)
+                return new ReturnResult((int)ErrorCodeEnum.Error_SqlData, "修改失败!");
+            return new ReturnResult();
+        }
+
+        public ReturnResult<PageList<ShoppingCartModel>> QueryProductList(string platKey, int pageSize, int pageIndex, int user_id)
+        {
+            if (string.IsNullOrEmpty(platKey))
+                return new ReturnResult<PageList<ShoppingCartModel>>((int)ErrorCodeEnum.Parameter_Missing,null, "参数异常!");
+            int totalNumber = 0;
+            PageList<ShoppingCartModel> page = new PageList<ShoppingCartModel>();
+            List<ShoppingCartModel> list =_dbContext.Queryable<shopping_cart, product>((a, b) => new object[] {
+                JoinType.Left,a.product_code==b.product_code})
+                .Where((a, b) => a.user_id == user_id && a.platkey == platKey)
+                .OrderBy((a,b)=>a.create_time,OrderByType.Desc)
+                .Select((a,b)=> new ShoppingCartModel()
+                {
+                    id=a.id,
+                    user_id=a.user_id,
+                    user_name=a.user_name,
+                    shop_id=a.shop_id,
+                    number=a.number,
+                    is_product_exists=b.is_publish,
+                    product_code=a.product_code,
+                    goodsName=b.name,
+                    salesPrice=b.sales_price
+                }).ToPageList(pageIndex,pageSize,ref totalNumber );
+            page.TotalCount = totalNumber;
+            page.PageSize = pageSize;
+            page.Page = pageIndex;
+            list.ForEach(x =>
+            {
+                page.DataList.Add(x);
+            });
+            return new ReturnResult<PageList<ShoppingCartModel>>(page);
+        }
+
+        public ReturnResult RemoveProductFromCart(string platKey, string strProduct_code, int user_id)
+        {
+            if (string.IsNullOrEmpty(platKey))
+                return new ReturnResult<PageList<ShoppingCartModel>>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+            int count = _dbContext.Deleteable<shopping_cart>()
+                .Where(x => x.product_code == strProduct_code && x.user_id == user_id)
+                .ExecuteCommand();
+            if (count <= 0)
+                return new ReturnResult((int)ErrorCodeEnum.Failed, "删除失败!");
+            return new ReturnResult();
+        }
+    }
+}

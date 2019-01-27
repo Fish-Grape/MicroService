@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Feng.Authorize" Version="1.0.3" />
+    <PackageReference Include="Feng.Config" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Identity.Entity\Feng.Identity.Entity.csproj" />
+    <ProjectReference Include="..\Feng.Identity.IService\Feng.Identity.IService.csproj" />
+  </ItemGroup>
+
+</Project>

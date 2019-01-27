@@ -1,0 +1,52 @@
+-- ==========================================《订单表 begin》===============
+
+DROP TABLE IF EXISTS orders;
+CREATE TABLE
+IF
+	NOT EXISTS orders (
+	id VARCHAR ( 30 ) COMMENT '主键id',
+	platkey VARCHAR ( 30 ) NOT NULL COMMENT '平台key',
+	product_code VARCHAR ( 50 ) NOT NULL COMMENT '产品编码',
+	product_name VARCHAR ( 100 ) NOT NULL COMMENT '产品名称',
+	short_desc VARCHAR ( 100 ) COMMENT '产品简述',
+	 addtime datetime COMMENT '添加时间' ,
+	PRIMARY KEY(id)
+	) ENGINE = INNODB,
+	charset = utf8,
+	COMMENT '订单表';
+	
+	
+DROP TABLE IF EXISTS orders_detail;
+
+CREATE TABLE
+IF
+	NOT EXISTS orders_detail (
+	id VARCHAR(30) PRIMARY COMMENT '主键id',
+	platkey VARCHAR(30) NOT NULL COMMENT '平台key',
+	orders_id VARCHAR(30) NOT NULL COMMENT '订单id',
+	description text COMMENT '产品描述',
+	category VARCHAR(200) COMMENT '产品分类',
+	final_price DECIMAL(10,2) COMMENT '成交价',
+	original_price DECIMAL(10,2) COMMENT '原价',
+	if_count DECIMAL(10,2) COMMENT '是否打折',
+	order_status VARCHAR(50) COMMENT '订单状态',
+	attr_json VARCHAR(255) COMMENT '订单属性'
+) ENGINE = INNODB,
+	charset = utf8,
+	COMMENT '订单详情表';
+		
+	
+	
+--  TRUNCATE TABLE orders;
+--  INSERT INTO orders ( appid, class_name, classfy )
+--  VALUES
+--  	( 123456, 'CMS系统', 'CMS' );
+	
+-- ==========================================《订单表 end》===============
+
+
+
+
+
+
+

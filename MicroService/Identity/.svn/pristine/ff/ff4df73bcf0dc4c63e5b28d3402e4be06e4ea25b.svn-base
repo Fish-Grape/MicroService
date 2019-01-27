@@ -1,0 +1,55 @@
+{
+  "ServiceDiscovery": {
+    "ServiceName": "auth_api",
+    "Version": "1.0.1",
+    "HealthCheckTemplate": "http://127.0.0.1:5002/status",
+    "Endpoint": "http://127.0.0.1:5002",
+    "Consul": {
+      "HttpEndpoint": "http://127.0.0.1:8500",
+      "DnsEndpoint": {
+        "Address": "127.0.0.1",
+        "Port": 8500
+      }
+    }
+  },
+  "ConfigService": {
+    "AppId": "CoreFeng",
+    "AppSercet": "CoreFeng@2018",
+    "RedisConnectionString": "",
+    "RedisListener": false,
+    "RefreshInteval": 300,
+    "ServerUrl": "http://127.0.0.1:5004",
+    "UseServiceDiscovery": true,
+    "ServiceName": "conf_api",
+    "NamespaceName": "Feng.Identity",
+    "Env": "pro"
+  },
+  "ErrorCodeService": {
+    "RefreshInteval": 1800,
+    "ServerUrl": "http://127.0.0.1:5000"
+  },
+  "EventBus": {
+    "RabbitMQ": {
+      "HostName": "127.0.0.1",
+      "Port": 5672,
+      "UserName": "Alion",
+      "Password": "Alion_2018",
+      "QueueName": "Feng.Identity.Api"
+    }
+  },
+  "JwtAuthorize": {
+    "Secret": "ZNaLHzBznFw0cVctWVF8PG8KeU1v9Y7u",
+    "Issuer": "Feng",
+    "Audience": "aone",
+    "PolicyName": "permission",
+    "DefaultScheme": "Bearer",
+    "IsHttps": false,
+    "RequireExpirationTime": true
+  },
+  "SqlSugarClient": {
+    "ConnectionString": "server=127.0.0.1;port=3306;database=feng;uid=alion;pwd=Alion_2018;",
+    "DbType": "MySql",
+    "InitKeyType": "Attribute",
+    "IsAutoCloseConnection": false
+  }
+}

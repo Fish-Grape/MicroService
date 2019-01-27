@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Order</name>
+    </assembly>
+    <members>
+        <member name="M:Feng.CMS.Config.DefaultModuleRegister.GetObjByReflect(System.String,System.String,System.Object[])">
+            <summary>
+            反射获取指定类型的对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="assemblyName">程序集</param>
+            <param name="fullName">全类名</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Order.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Order.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

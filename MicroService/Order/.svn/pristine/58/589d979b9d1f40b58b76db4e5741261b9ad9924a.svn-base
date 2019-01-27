@@ -1,0 +1,27 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Error",
+      "System": "Error",
+      "Microsoft": "Error"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tracing": {
+    "SystemName": "Feng.Order.Api",
+    "IgnoredRoutesRegexPatterns": [ "/status", "/$", "/config" ]
+  },
+  "Project": {
+    "Name": "Feng.Order.Api",
+    "DocName": "order_api",
+    "Title": "内容管理",
+    "Description": "内容管理系统",
+    "Contact": {
+      "Name": "gubin",
+      "Email": "auth@feng.com"
+    },
+    "Version": "v1.0.1",
+    "XmlFile": "Feng.Order.xml"
+  }
+}

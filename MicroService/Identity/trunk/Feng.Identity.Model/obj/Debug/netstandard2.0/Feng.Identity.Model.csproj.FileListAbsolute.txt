@@ -1,0 +1,9 @@
+E:\工作目录\Identity\trunk\Feng.Identity.Model\bin\Debug\netstandard2.0\Feng.Identity.Model.deps.json
+E:\工作目录\Identity\trunk\Feng.Identity.Model\bin\Debug\netstandard2.0\Feng.Identity.Model.dll
+E:\工作目录\Identity\trunk\Feng.Identity.Model\bin\Debug\netstandard2.0\Feng.Identity.Model.pdb
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.csprojAssemblyReference.cache
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.csproj.CoreCompileInputs.cache
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.AssemblyInfoInputs.cache
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.AssemblyInfo.cs
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.dll
+E:\工作目录\Identity\trunk\Feng.Identity.Model\obj\Debug\netstandard2.0\Feng.Identity.Model.pdb

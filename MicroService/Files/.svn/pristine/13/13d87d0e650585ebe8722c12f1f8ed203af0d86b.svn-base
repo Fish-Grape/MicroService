@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Files</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Files.Controllers.DomainController">
+            <summary>
+            归属方
+            </summary>
+        </member>
+        <member name="M:Feng.Files.Controllers.DomainController.OpenDomain(Feng.Files.Model.OpenModel)">
+            <summary>
+            开通文件系统
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Files.Controllers.FileController.ViewOrDownLoadFileById(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="appid"></param>
+            <param name="fileid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Files.Controllers.UploadController">
+            <summary>
+            文件上传
+            </summary>
+        </member>
+        <member name="M:Feng.Files.Controllers.UploadController.UploadSmallFilesByForm(System.String)">
+            <summary>
+            表单模式上传文件
+            </summary>
+            <param name="appid">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Files.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Files.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Files.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Feng.Core.Config;
+using Feng.Core.Exceptions;
+using Feng.Redis;
+using Feng.Utils;
+using Feng.Utils.Helpers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.Identity.Controllers
+{
+    /// <summary>
+    /// 工具控制器
+    /// </summary>
+    public class ToolController : Controller
+    {
+        private readonly RedisClient _redisClient;
+        private readonly IConfig _config;
+        public ToolController(IConfig config, RedisClient redisClient)
+        {
+            _config = config;
+            _redisClient = redisClient;
+        }
+
+        /// <summary>
+        /// 图形验证码
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/ValidateCode")]
+        public IActionResult ValidateCode(string guid, int width = 100, int height = 32)
+        {
+            if (guid.IsEmpty())
+                throw new FengException("f_001", "请输入用户标识");
+            var rediscontect = _config.StringGet("RedisDefaultServer");
+            var redis = _redisClient.GetDatabase(rediscontect, 5);
+            var code = Randoms.CreateRandomValue(4, false);
+            redis.StringSet($"ImgCode:{guid}", code, new TimeSpan(0, 0, 0, 300));
+            var st = VerifyCode.CreateByteByImgVerifyCode(code, width, height);
+            return File(st, "image/jpeg");
+        }
+
+    }
+}

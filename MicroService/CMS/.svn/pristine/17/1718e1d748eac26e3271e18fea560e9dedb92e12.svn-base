@@ -1,0 +1,129 @@
+﻿using Feng.Basic;
+using Feng.CMS.Entity;
+using Feng.CMS.IService;
+using Feng.CMS.Model.Navigation;
+using Feng.Core;
+using Feng.DbContext;
+using Microsoft.Extensions.Logging;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+
+namespace Feng.CMS.Service
+{
+    class Menu_ClassfyService : IMenu_ClassfyService
+    {
+        public readonly IRepositoryBase<cms_menu_classfy> _repositoryBase;
+        private readonly IJsonHelper _jsonHelper;
+        private readonly IUser _user;
+        private readonly ILogger<Menu_ClassfyService> _log;
+
+        public Menu_ClassfyService(IRepositoryBase<cms_menu_classfy> repositoryBase, IJsonHelper jsonHelper, IUser user, ILogger<Menu_ClassfyService> log)
+        {
+            _repositoryBase = repositoryBase;
+            _jsonHelper = jsonHelper;
+            _user = user;
+            _log = log;
+        }
+
+        public ReturnResult Change(string appid, ModifyMenu_ClassfyModel x)
+        {
+            int count = _repositoryBase.DbContext.Updateable<cms_menu_classfy>()
+                 .UpdateColumns(f => new cms_menu_classfy
+                 {
+                     id = x.id,
+                     class_name = x.class_name,
+                 })
+                 .Where(a => a.id == x.id)
+                 .Where(a => a.appid == appid)
+                 .ExecuteCommand();
+
+            if (count > 0)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult Delete(string appid, int id)
+        {
+            bool b = true;
+            try
+            {
+                _repositoryBase.DbContext.Ado.BeginTran();
+                string strClassfy = _repositoryBase.DbContext.Queryable<cms_menu_classfy>().InSingle(id).classfy;
+                //删除主分类
+                _repositoryBase.DbContext.Deleteable<cms_menu_classfy>()
+                    .Where(a => a.id == id)
+                    .Where(a => a.appid == appid).ExecuteCommand();
+                //删除分类下的所有导航
+                _repositoryBase.DbContext.Deleteable<cms_menu>().Where(it => it.classfy == strClassfy).ExecuteCommand();
+                _repositoryBase.DbContext.Ado.CommitTran();
+            }
+            catch (Exception ex)
+            {
+                _repositoryBase.DbContext.Ado.RollbackTran();
+                throw ex;
+            }
+
+            if (b)
+                return new ReturnResult();
+            else
+                return new ReturnResult((int)ErrorCodeEnum.Failed);
+        }
+
+        public ReturnResult<List<Menu_ClassfyModel>> GetClassfyList(string appid)
+        {
+            List<Menu_ClassfyModel> result = new List<Menu_ClassfyModel>();
+            _log.LogInformation("分类列表查询前,appid="+appid);
+            var list = _repositoryBase.DbContext.Queryable<cms_menu_classfy>().
+                Where(a => a.appid == appid).OrderBy(a => a.id, OrderByType.Asc)
+                .ToList();
+            _log.LogInformation("分类列表查询后");
+            if (list.Count <= 0)
+            {
+                return new ReturnResult<List<Menu_ClassfyModel>>(result);
+            }
+
+            list.ForEach(x =>
+            {
+                result.Add(
+                    new Menu_ClassfyModel{
+                        id=x.id,
+                        class_name = x.class_name,
+                        classfy=x.classfy
+                    }
+                    );
+            });
+            return new ReturnResult<List<Menu_ClassfyModel>>(result);
+        }
+
+        public ReturnResult<Menu_ClassfyModel> GetClassfyViewByID(string appid, int ID)
+        {
+            cms_menu_classfy classfy= _repositoryBase.DbContext.Queryable<cms_menu_classfy>().InSingle(ID);
+            if (classfy == null || classfy.id == 0)
+                return new ReturnResult<Menu_ClassfyModel>(new Menu_ClassfyModel());
+            return new ReturnResult<Menu_ClassfyModel>(new Menu_ClassfyModel() {
+                id=classfy.id,
+                class_name = classfy.class_name,
+                classfy=classfy.classfy
+            });
+        }
+
+        public ReturnResult<ReturnMenu_ClassfyModel> Insert(string appid, AddMenu_ClassfyModel x)
+        {
+            if (x == null)
+                return new ReturnResult<ReturnMenu_ClassfyModel>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+
+            cms_menu_classfy item = new cms_menu_classfy()
+            {
+                appid = appid,
+                class_name = x.class_name,
+                classfy = x.classfy
+            };
+
+            int id = _repositoryBase.DbContext.Insertable(item).ExecuteReturnIdentity();
+
+            return new ReturnResult<ReturnMenu_ClassfyModel>(new ReturnMenu_ClassfyModel() { id = id });
+        }
+    }
+}

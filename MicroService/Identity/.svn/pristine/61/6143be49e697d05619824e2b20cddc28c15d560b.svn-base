@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Identity</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Identity.Controllers.AuthController">
+            <summary>
+            认证授权控制器
+            </summary>
+        </member>
+        <member name="F:Feng.Identity.Controllers.AuthController._authService">
+            <summary>
+            业务实现
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.#ctor(Feng.Identity.IService.IAuthService)">
+            <summary>
+            构造
+            </summary>
+            <param name="authService"></param>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.Login(Feng.Identity.Model.Auth.LoginModel)">
+            <summary>
+            账户登陆 - 密码登陆
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.RegisterAsync(Feng.Identity.Model.Auth.RegisterModel)">
+            <summary>
+            用户注册
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.SendSmsCode(Feng.Identity.Model.Auth.SendSmsCodeModel)">
+            <summary>
+            发送短信验证码
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Identity.Controllers.ToolController">
+            <summary>
+            工具控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.ValidateCode(System.String,System.Int32,System.Int32)">
+            <summary>
+            图形验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.GetProvince">
+            <summary>
+            获取所有省份
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.GetCityByProvinceId(System.Int16)">
+            <summary>
+            根据省会编号获取所有城市
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.GetRegionByCityId(System.Int16)">
+            <summary>
+            根据城市编号获取所有区域
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.GetAllRegionByRegionId(System.Int16)">
+            <summary>
+            根据区域编号获取省市
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Feng.Identity.Startup.AutofacContainer">
+            <summary>
+            AutofacDI容器
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+        <member name="T:Feng.Identity.Startup.AutofacModuleRegister">
+            <summary>
+            Autofac扩展注册
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Startup.AutofacModuleRegister.Load(Autofac.ContainerBuilder)">
+            <summary>
+            装载autofac方式注册
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,75 @@
+﻿using Feng.Basic;
+using Feng.Product.IService;
+using Feng.Product.IService.Background;
+using Feng.Product.Model;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.Product.Areas.web.Controllers.v1
+{
+    /// <summary>
+    /// 购物车管理
+    /// </summary>
+    [ApiController]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    public class ShopCartController : ControllerBase
+    {
+        /// <summary>
+        /// 购物车管理接口
+        /// </summary>
+        public readonly IShoppingCartService _shoppingCart;
+
+        public ShopCartController(IShoppingCartService shoppingCart)
+        {
+            _shoppingCart = shoppingCart;
+        }
+
+        /// <summary>
+        /// 添加产品到购物车
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost,Route("add")]
+        public ReturnResult<dynamic> AddToCart([FromBody]AddShoppingCartModel model) {
+            var platKey = Utils.Extensions.Plat;
+            return _shoppingCart.AddToCart(platKey,model);
+        }
+
+        /// <summary>
+        /// 修改产品数量
+        /// </summary>
+        /// <param name="modifyPro"></param>
+        /// <returns></returns>
+        [HttpPost, Route("modify")]
+        public ReturnResult ModifyProductInCartNum([FromBody]ModifyProNumModel modifyPro) {
+            var platKey = Utils.Extensions.Plat;
+            return _shoppingCart.ModifyProductInCartNum(platKey, modifyPro);
+        }
+        /// <summary>
+        /// 分页查询购物车
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        [HttpGet,Route("query")]
+        public ReturnResult<PageList<ShoppingCartModel>> QueryProductList(int pageSize, int pageIndex,int user_id) {
+            var platKey = Utils.Extensions.Plat;
+            return _shoppingCart.QueryProductList(platKey, pageSize, pageIndex, user_id);
+        }
+
+        /// <summary>
+        /// 从购物车中移除产品
+        /// </summary>
+        /// <param name="strProduct_code"></param>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        [HttpGet,Route("delete")]
+        public ReturnResult RemoveProductFromCart(string strProduct_code, int user_id)
+        {
+            var platKey = Utils.Extensions.Plat;
+            return _shoppingCart.RemoveProductFromCart(platKey, strProduct_code, user_id);
+        }
+
+    }
+}

@@ -1,0 +1,9 @@
+E:\工作目录\Product\trunk\Feng.Product.Model\bin\Debug\netstandard2.0\Feng.Product.Model.deps.json
+E:\工作目录\Product\trunk\Feng.Product.Model\bin\Debug\netstandard2.0\Feng.Product.Model.dll
+E:\工作目录\Product\trunk\Feng.Product.Model\bin\Debug\netstandard2.0\Feng.Product.Model.pdb
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.csproj.CoreCompileInputs.cache
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.AssemblyInfoInputs.cache
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.AssemblyInfo.cs
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.dll
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.pdb
+E:\工作目录\Product\trunk\Feng.Product.Model\obj\Debug\netstandard2.0\Feng.Product.Model.csprojAssemblyReference.cache

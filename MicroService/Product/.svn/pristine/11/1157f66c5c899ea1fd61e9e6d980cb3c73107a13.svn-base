@@ -1,0 +1,135 @@
+﻿using Feng.Basic;
+using Feng.DbContext;
+using Feng.Product.Entity;
+using Feng.Product.IService;
+using Feng.Product.Model;
+using Feng.Utils.Helpers;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Service
+{
+    public partial class BrandService : IBrandService
+    {
+        public readonly IRepositoryBase<brand> _repositoryBase;
+        public BrandService(IRepositoryBase<brand> repositoryBase)
+        {
+            _repositoryBase = repositoryBase;
+        }
+        public ReturnResult<dynamic> AddBrand(string platKey, AddBrandModel model)
+        {
+            if (model == null)
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Parameter_Missing, null, "参数异常!");
+
+            brand item = new brand()
+            {
+                addtime = DateTime.Now,
+                cn_name = model.cnName,
+                en_name = model.enName,
+                description = model.description,
+                logo = model.logo,
+                site_url = model.siteUrl,
+                status = model.status,
+                platkey = platKey
+            };
+
+            int result = _repositoryBase.InsertReturnIdentity(item);
+
+            if (result <= 0)
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Error_SqlData, null, "添加失败!");
+
+
+            return new ReturnResult<dynamic>(new { id = result });
+        }
+
+        public ReturnResult ModifyBrand(string platKey, BrandModel model)
+        {
+            if (model == null)
+                return new ReturnResult((int)ErrorCodeEnum.Parameter_Missing, "参数异常!");
+
+
+            int result = _repositoryBase.DbContext.Updateable<brand>()
+                .UpdateColumns(a => new brand()
+                {
+                    cn_name = model.cnName,
+                    en_name = model.enName,
+                    description = model.description,
+                    logo = model.logo,
+                    site_url = model.siteUrl,
+                    status = model.status
+                })
+                .Where(x => x.platkey == platKey)
+                .Where(x => x.id == model.id)
+                .ExecuteCommand();
+
+            //bool result = _repositoryBase.Update(a => new brand()
+            //{
+            //    cn_name = model.cnName,
+            //    en_name = model.enName,
+            //    description = model.description,
+            //    logo = model.logo,
+            //    site_url = model.siteUrl,
+            //    status = model.status
+            //}, x => x.platkey == platKey && x.id == model.id
+            //);
+
+            if (result <= 0)
+                return new ReturnResult((int)ErrorCodeEnum.Error_SqlData, "更新失败!");
+
+            return new ReturnResult();
+        }
+
+        public ReturnResult<PageList<BrandModel>> QueryBrand(string platKey, int pageIndex, int pageSize,string name)
+        {
+            int totalNumber = 0;
+            var list = _repositoryBase.DbContext.Queryable<brand>()
+                .Where(x => x.platkey == platKey)
+                .WhereIF(!string.IsNullOrEmpty(name), x => x.cn_name.Contains(name))
+                .OrderBy(x => x.id, OrderByType.Asc)
+                .ToPageList(pageIndex, pageSize, ref totalNumber);
+
+            if (list != null && list.Count > 0)
+            {
+                List<BrandModel> item = new List<BrandModel>();
+                list.ForEach(a =>
+                {
+                    item.Add(new BrandModel()
+                    {
+                        id = a.id,
+                        cnName = a.cn_name,
+                        enName = a.en_name,
+                        description = a.description,
+                        logo = a.logo,
+                        siteUrl = a.site_url,
+                        status = a.status,
+                        addTime = a.addtime
+                    });
+                });
+                return new ReturnResult<PageList<BrandModel>>(new PageList<BrandModel>() { DataList=item, Page=pageIndex, PageSize=pageSize, TotalCount=totalNumber });
+            }
+            else
+            {
+                return new ReturnResult<PageList<BrandModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有查到数据!");
+            }
+        }
+
+        public ReturnResult ModifyBrandStatus(string platKey, int id, bool status)
+        {
+            int result = _repositoryBase.DbContext.Updateable<brand>()
+                .UpdateColumns(a => new brand()
+                {
+                    status = status
+                })
+                .Where(x => x.platkey == platKey)
+                .Where(x => x.id == id)
+                .ExecuteCommand();
+
+            if (result <= 0)
+                return new ReturnResult((int)ErrorCodeEnum.Error_SqlData, "更新状态失败!");
+
+            return new ReturnResult();
+        }
+    }
+}

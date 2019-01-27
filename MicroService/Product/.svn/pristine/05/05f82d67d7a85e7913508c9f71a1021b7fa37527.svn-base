@@ -1,0 +1,267 @@
+﻿using Feng.Basic;
+using Feng.DbContext;
+using Feng.Product.Entity;
+using Feng.Product.IService;
+using Feng.Product.Model;
+using Feng.Utils.Helpers;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Service
+{
+    public partial class ProductService : IProductService
+    {
+        public readonly SqlSugarClient _dbContext;
+        public ProductService(SqlSugarClient dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public ReturnResult<dynamic> AddProduct(string platKey, AddProductModel model)
+        {
+            if (model == null)
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Parameter_Missing,null,"参数异常!");
+
+            //验证用户
+
+            if (model.skuList.Count <= 0)
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Error_Data_State, null, "数据异常!");
+
+            try {
+                _dbContext.Ado.BeginTran();
+                #region 产品基础信息
+                product item = new product()
+                {
+                    id = Id.ObjectId(),
+                    categoryid = model.categoryId,
+                    name = model.goodsName,
+                    product_code = model.productCode,
+                    brandid = model.brandId,
+                    platkey = platKey,
+                    sales_price = model.salesPrice,
+                    market_price = model.marketPrice,
+                    price = model.price,
+                    weight = model.weight,
+                    xxx = model.xxx,
+                    yyy = model.yyy,
+                    zzz = model.zzz,
+                    density = model.density,
+                    is_publish = model.isPublish,
+                    short_desc = model.shortDesc,
+                    description = model.description,
+                    addtime = DateTime.Now
+                };
+                _dbContext.Insertable(item).ExecuteCommand();
+                #endregion
+
+                #region 产品图片
+                //添加媒体
+                List<product_media> mediaList = new List<product_media>();
+                model.mediaList.ForEach((m) => 
+                {
+                    mediaList.Add(new product_media()
+                    {
+                        platkey = platKey,
+                        productid = item.id,
+                        media_type = m.mediaType,
+                        media_url = m.mediaUrl,
+                        order = m.displayOrder
+                    });
+                });
+                _dbContext.Insertable(mediaList).ExecuteCommand();
+                #endregion
+
+                #region  产品SKU
+                //添加规格
+                List <product_sku> skuList = new List<product_sku>();
+                model.skuList.ForEach((s) =>
+                {
+                    skuList.Add(new product_sku()
+                    {
+                        id = Id.ObjectId(),
+                        productid = item.id,
+                        attr_json = s.attrJson,
+                        barcode = s.barCode,
+                        count = s.count,
+                        name = s.name,
+                        price = s.price,
+                        platkey = platKey,
+                        addtime = DateTime.Now
+                    });
+                });
+                _dbContext.Insertable(skuList).ExecuteCommand();
+                #endregion
+
+                #region 产品属性
+                //添加属性
+                List<product_attribute> attrList = new List<product_attribute>();
+                if (model.attrList.Count > 0)
+                {
+                    model.attrList.ForEach((a) =>
+                    {
+                        attrList.Add(new product_attribute()
+                        {
+                            attributeid = a.attributeId,
+                            attr_val_id = a.attributeValueId,
+                            productid = item.id,
+                            platkey = platKey,
+                            skuid = ""
+                        });
+                    });
+                }
+                skuList.ForEach((s) =>
+                {
+                    if (!string.IsNullOrWhiteSpace(s.attr_json))
+                    {
+                        string[] strArray = s.attr_json.Split(',');
+                        foreach (string str in strArray)
+                        {
+                            string[] strItem = str.Split(':');
+                            attrList.Add(new product_attribute()
+                            {
+                                attributeid = strItem[0],
+                                attr_val_id = strItem[1],
+                                productid = item.id,
+                                skuid = s.id,
+                                platkey = platKey
+                            });
+                        }
+
+                    }
+                });
+                _dbContext.Insertable(attrList).ExecuteCommand();
+                #endregion
+
+                _dbContext.Ado.CommitTran();
+
+                return new ReturnResult<dynamic>(new { item.id });
+
+            } catch (Exception ex) {
+
+                _dbContext.Ado.RollbackTran();
+                return new ReturnResult<dynamic>((int)ErrorCodeEnum.Failed, null, "添加失败!");
+            }
+        }
+
+        public ReturnResult ModifyProductStatus(string platKey, string pid, bool isPublish)
+        {
+
+            int result = _dbContext.Updateable<product>()
+                .UpdateColumns(p => new product() { is_publish = isPublish })
+                .Where(p => p.platkey == platKey)
+                .Where(p => p.id == pid)
+                .ExecuteCommand();
+            if (result <= 0)
+                return new ReturnResult((int)ErrorCodeEnum.Error_SqlData, "修改失败!");
+
+            return new ReturnResult();
+        }
+
+        public ReturnResult<ProductModel> QueryProductById(string platKey, string id,bool isWeb = false)
+        {
+            #region 基本信息
+            ProductModel product = _dbContext.Queryable<product>()
+                .Where(a => a.id == id && a.platkey == platKey)
+                .WhereIF(isWeb, a => a.is_publish)
+                .Select(model => new ProductModel()
+                {
+                    id = id,
+                    categoryId = model.categoryid,
+                    goodsName = model.name,
+                    productCode = model.product_code,
+                    brandId = model.brandid,
+                    salesPrice = model.sales_price,
+                    marketPrice = model.market_price,
+                    price = model.price,
+                    weight = model.weight,
+                    xxx = model.xxx,
+                    yyy = model.yyy,
+                    zzz = model.zzz,
+                    density = model.density,
+                    isPublish = model.is_publish,
+                    shortDesc = model.short_desc,
+                    description = model.description
+                }).First();
+            #endregion
+            //前台页面未上架则不展示
+            if(product==null || !product.isPublish)
+                return new ReturnResult<ProductModel>();
+
+            #region 媒体资源
+            product.mediaList = _dbContext.Queryable<product_media>()
+                .Where(a => a.productid == id && a.platkey == platKey)
+                .Select(x => new ProductMediaModel()
+                {
+                    mediaType = x.media_type,
+                    mediaUrl = x.media_url,
+                    displayOrder = x.order
+                }).ToList();
+            #endregion
+
+            #region 属性信息
+            product.attrList = _dbContext.Queryable<product_attribute>()
+                .Where(a => a.productid == id && a.platkey == platKey)
+                .Select(x => new ProductAttrModel()
+                {
+                    attributeId = x.attributeid,
+                    attributeValueId = x.attr_val_id
+                }).ToList();
+            #endregion
+
+            #region 产品SKU
+            product.skuList = _dbContext.Queryable<product_sku>()
+                 .Where(a => a.productid == id && a.platkey == platKey)
+                 .Select(x => new ProductSkuModel()
+                 {
+                     count = x.count,
+                     name = x.name,
+                     price = x.price,
+                     attrJson = x.attr_json,
+                     barCode = x.barcode
+                 }).ToList();
+            #endregion
+            return new ReturnResult<ProductModel>(product);
+        }
+
+        public ReturnResult<PageList<QueryProductModel>> QueryProductList(string platKey, int pageSize, int pageIndex, string productName, string cid, string brandName, string startDate, string endDate, int isPublish)
+        {
+            PageList<QueryProductModel> page = null;
+            int totalNumber = 0;
+            var list = _dbContext.Queryable<product, brand>((a, b) =>
+                  new object[]{
+                    JoinType.Left,a.brandid==b.id
+                  })
+                 .Where((a, b) => a.platkey == platKey)
+                 .Where((a, b) => a.platkey == b.platkey)
+                 .WhereIF(!string.IsNullOrEmpty(cid), (a, b) => a.categoryid == cid)
+                 .WhereIF(!string.IsNullOrEmpty(productName), (a, b) => a.name.Contains(productName))
+                 .WhereIF(!string.IsNullOrEmpty(brandName), (a, b) => b.cn_name.Contains(brandName) || b.en_name.Contains(brandName))
+                 .WhereIF(isPublish > -1, (a, b) => a.is_publish == SqlFunc.IIF(isPublish == 0, false, true))
+                 .WhereIF(!string.IsNullOrEmpty(startDate), (a, b) => a.addtime >= SqlFunc.ToDate(startDate))
+                 .WhereIF(!string.IsNullOrEmpty(endDate), (a, b) => a.addtime <= SqlFunc.ToDate(endDate))
+                 .Select((a, b) => new QueryProductModel() {
+                     productId = a.id,
+                     productName = a.name,
+                     brandName = b.cn_name,
+                     isPublish = a.is_publish,
+                     salesPrice = a.sales_price,
+                     marketPrice = a.market_price,
+                     addTime = a.addtime
+                 })
+                 .ToPageList(pageIndex, pageSize, ref totalNumber);
+            
+            if (list.Count > 0) {
+                page = new PageList<QueryProductModel>();
+                page.DataList = list;
+                page.Page = pageIndex;
+                page.PageSize = pageSize;
+                page.TotalCount = totalNumber;
+                return new ReturnResult<PageList<QueryProductModel>>(page);
+            }
+            return new ReturnResult<PageList<QueryProductModel>>((int)ErrorCodeEnum.Error_NoData,page,"没有数据!");
+        }
+
+    }
+}

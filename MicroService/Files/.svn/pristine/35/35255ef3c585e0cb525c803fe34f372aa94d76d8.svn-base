@@ -1,0 +1,27 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tracing": {
+    "SystemName": "Feng.Files.Api",
+    "IgnoredRoutesRegexPatterns": [ "/status", "/$", "/config" ]
+  },
+  "Project": {
+    "Name": "Feng.Files.Api",
+    "DocName": "file_api",
+    "Title": "文件中心",
+    "Description": "分布式文件服务",
+    "Contact": {
+      "Name": "gubin",
+      "Email": "auth@feng.com"
+    },
+    "Version": "v1.0.1",
+    "XmlFile": "Feng.Files.xml"
+  }
+}

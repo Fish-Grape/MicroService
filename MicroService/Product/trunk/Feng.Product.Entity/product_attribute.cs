@@ -1,0 +1,37 @@
+﻿using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.Product.Entity
+{
+    [SugarTable("product_attribute")]
+    public class product_attribute
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+        public int id { get; set; }
+        /// <summary>
+        /// 平台
+        /// </summary>
+        public string platkey { get; set; }
+        /// <summary>
+        /// 产品编号
+        /// </summary>
+        public string productid { get; set; }
+        /// <summary>
+        /// 属性编号
+        /// </summary>
+        public string attributeid { get; set; }
+        /// <summary>
+        /// 属性值编号
+        /// </summary>
+        public string attr_val_id { get; set; }
+        /// <summary>
+        /// SKU编号
+        /// </summary>
+        public string skuid { get; set; }
+    }
+}

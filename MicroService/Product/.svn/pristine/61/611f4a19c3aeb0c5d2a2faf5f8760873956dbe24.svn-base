@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\zhaobo-it\技术\Feng\Feng.Product\trunk\Feng.Product\Feng.Product.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\zhaobo-it\技术\Feng\Feng.Product\trunk\Feng.Product\Feng.Product.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Feng.Product.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Feng.Product.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\web\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="Feng.Authorize" Version="1.0.2" />
+    <PackageReference Include="Feng.Authorize.MySql" Version="1.0.2" />
+    <PackageReference Include="Feng.Config" Version="1.0.2" />
+    <PackageReference Include="Feng.Core" Version="1.0.0" />
+    <PackageReference Include="Feng.DbContext" Version="1.0.1" />
+    <PackageReference Include="Feng.EventBus.RabbitMQ" Version="1.0.0" />
+    <PackageReference Include="Feng.LoadBalancer" Version="1.0.0" />
+    <PackageReference Include="Feng.Logging.Event" Version="1.0.1" />
+    <PackageReference Include="Feng.ServiceDiscovery.Consul" Version="1.0.0" />
+    <PackageReference Include="Feng.Swagger" Version="1.0.1" />
+    <PackageReference Include="Feng.Tracing.Event" Version="1.0.0" />
+    <PackageReference Include="Feng.Utils" Version="1.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Product.IService\Feng.Product.IService.csproj" />
+    <ProjectReference Include="..\Feng.Product.Model\Feng.Product.Model.csproj" />
+    <ProjectReference Include="..\Feng.Product.Service\Feng.Product.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="hosting.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

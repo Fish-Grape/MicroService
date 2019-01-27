@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Product</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Product.Areas.Auth.Controllers.ProductController">
+            <summary>
+            认证产品管理
+            </summary>
+        </member>
+        <member name="F:Feng.Product.Areas.Auth.Controllers.ProductController._productService">
+            <summary>
+            产品服务接口
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Areas.Auth.Controllers.ProductController.#ctor(Feng.Product.IService.IProductService)">
+            <summary>
+            注入
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:Feng.Product.Areas.Auth.Controllers.ProductController.AddProduct(Feng.Product.Model.AddAuthProductModel)">
+            <summary>
+            添加产品
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.Auth.Controllers.ProductController.QueryAuthProductList(System.String)">
+            <summary>
+            查询认证产品列表
+            </summary>
+            <param name="cid">默认为空，查询全部</param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.Auth.Controllers.ProductController.ModifyProductStatus(Feng.Product.Model.ModifyProductStatus)">
+            <summary>
+            修改产品状态
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Areas.web.Controllers.v1.CategoryWebController">
+            <summary>
+            产品分类管理
+            </summary>
+        </member>
+        <member name="F:Feng.Product.Areas.web.Controllers.v1.CategoryWebController._categoryService">
+            <summary>
+            注入
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.CategoryWebController.#ctor(Feng.Product.IService.ICategoryService)">
+            <summary>
+            
+            </summary>
+            <param name="categoryService"></param>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.CategoryWebController.QueryCategory">
+            <summary>
+            获取分类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Areas.web.Controllers.v1.ProductWebController">
+            <summary>
+            前台接口
+            </summary>
+        </member>
+        <member name="F:Feng.Product.Areas.web.Controllers.v1.ProductWebController._productService">
+            <summary>
+            产品服务接口
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ProductWebController.#ctor(Feng.Product.IService.IProductService)">
+            <summary>
+            注入
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ProductWebController.QueryProductList_home(System.String)">
+            <summary>
+            查询产品列表（分类id可选）
+            </summary>
+            <param name="CategoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ProductWebController.QueryProductList(System.String)">
+            <summary>
+            查询产品列表（分类id可选）
+            </summary>
+            <param name="CategoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ProductWebController.QueryProductById(System.String)">
+            <summary>
+            根据id获取产品
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Areas.web.Controllers.v1.ShopCartController">
+            <summary>
+            购物车管理
+            </summary>
+        </member>
+        <member name="F:Feng.Product.Areas.web.Controllers.v1.ShopCartController._shoppingCart">
+            <summary>
+            购物车管理接口
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ShopCartController.AddToCart(Feng.Product.Model.AddShoppingCartModel)">
+            <summary>
+            添加产品到购物车
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ShopCartController.QueryProductList(System.Int32)">
+            <summary>
+            查询购物车列表
+            </summary>
+            <param name="user_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ShopCartController.RemoveProductFromCart(Feng.Product.Model.RemoveCartModel)">
+            <summary>
+            从购物车中移除产品
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Areas.web.Controllers.v1.ShopCartController.ClearCart(System.Int32)">
+            <summary>
+            清空购物车
+            </summary>
+            <param name="user_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.AutofacModuleRegister.Load(Autofac.ContainerBuilder)">
+            <summary>
+            装载autofac方式注册
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Feng.Product.Controllers.AttributeController">
+            <summary>
+            属性管理
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.#ctor(Feng.Product.IService.IAttributeService)">
+            <summary>
+            
+            </summary>
+            <param name="attributeService"></param>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.AddAttributeGroup(Feng.Product.Model.AddAttributeGroupModel)">
+            <summary>
+            添加属性分组
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.QueryAttributeGroup(System.String)">
+            <summary>
+            根据分类编号查询属性分组列表
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.RemoveAttributeGroup(System.String)">
+            <summary>
+            根据编号删除属性分组
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.ModifyAttributeGroup(Feng.Product.Model.AttributeGroupModel)">
+            <summary>
+            修改属性分组
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.AddAttribute(Feng.Product.Model.AddAttributeModel)">
+            <summary>
+            添加属性
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.QueryAttribute(System.String)">
+            <summary>
+            根据分类编号查询属性列表
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.QueryAttributeAndVal(System.String)">
+            <summary>
+            根据分类编号查询属性/属性值列表
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.RemoveAttribute(System.String)">
+            <summary>
+            根据编号删除属性
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.ModifyAttribute(Feng.Product.Model.AttributeModel)">
+            <summary>
+            修改属性
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.AddAttributeValue(Feng.Product.Model.AddAttributeValueModel)">
+            <summary>
+            添加属性值
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.QueryAttributeValue(System.String)">
+            <summary>
+            根据属性编号查询属性值列表
+            </summary>
+            <param name="attributeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.RemoveAttributeValue(System.String)">
+            <summary>
+            根据编号删除属性值
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.ModifyAttributeValue(Feng.Product.Model.AttributeValueModel)">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.AddExtendAttribute(Feng.Product.Model.Background.AddExtendAttrModel)">
+            <summary>
+            添加附加属性
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.QueryExtendAttr(System.String)">
+            <summary>
+            根据关联id查询附加属性
+            </summary>
+            <param name="extId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.RemoveExtendAttr(System.String)">
+            <summary>
+            根据编号删除附加属性
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.AttributeController.ModifyExtendAttr(Feng.Product.Model.Background.ExtendAttrModel)">
+            <summary>
+            修改附加属性
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Controllers.BrandController">
+            <summary>
+            品牌管理
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Controllers.BrandController.#ctor(Feng.Product.IService.IBrandService)">
+            <summary>
+            
+            </summary>
+            <param name="brandService"></param>
+        </member>
+        <member name="M:Feng.Product.Controllers.BrandController.AddBrand(Feng.Product.Model.AddBrandModel)">
+            <summary>
+            添加品牌
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.BrandController.ModifyBrand(Feng.Product.Model.BrandModel)">
+            <summary>
+            修改品牌
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.BrandController.ModifyBrandStatus(System.Int32,System.Boolean)">
+            <summary>
+            修改品牌状态
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.BrandController.QueryBrand(System.Int32,System.Int32,System.String)">
+            <summary>
+            分页查询品牌
+            </summary>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">每页数量</param>
+            <param name="name">品牌名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Controllers.CategoryController">
+            <summary>
+            产品分类管理
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Controllers.CategoryController.#ctor(Feng.Product.IService.ICategoryService)">
+            <summary>
+            
+            </summary>
+            <param name="categoryService"></param>
+        </member>
+        <member name="M:Feng.Product.Controllers.CategoryController.AddCategoryAsync(Feng.Product.Model.AddCategoryModel)">
+            <summary>
+            添加产品分类
+            </summary>
+            <param name="model">分类模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.CategoryController.ModifyCategory(Feng.Product.Model.CategoryModel)">
+            <summary>
+            修改产品分类
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.CategoryController.RemoveCategory(System.String)">
+            <summary>
+            删除分类
+            </summary>
+            <param name="cid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.CategoryController.QueryCategory">
+            <summary>
+            获取分类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Product.Controllers.ProductController">
+            <summary>
+            产品管理
+            </summary>
+        </member>
+        <member name="F:Feng.Product.Controllers.ProductController._productService">
+            <summary>
+            产品服务接口
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.#ctor(Feng.Product.IService.IProductService)">
+            <summary>
+            注入
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.AddProduct(Feng.Product.Model.AddProductModel)">
+            <summary>
+            添加产品
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.QueryProductList(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <param name="productName"></param>
+            <param name="cid"></param>
+            <param name="brandName"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <param name="isPublish"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.QueryProductById(System.String)">
+            <summary>
+            根据id获取产品
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.QueryProductPrimaryInfo(System.String)">
+            <summary>
+            查询产品基本信息
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.UpdateProductPrimaryInfo(Feng.Product.Model.UpdatePrimaryModel)">
+            <summary>
+            修改产品基本信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.UpdateProductMediaInfo(Feng.Product.Model.UpdateProdMediaModel)">
+            <summary>
+            修改产品媒体信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.QueryProductMediaInfo(System.String)">
+            <summary>
+            查询产品媒体信息
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.AddProductMediaInfo(Feng.Product.Model.AddProductMediaModel)">
+            <summary>
+            新增产品媒体信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Product.Controllers.ProductController.DeleteProductMediaInfo(System.Int32)">
+            <summary>
+            删除产品媒体信息
+            </summary>
+            <param name="mediaId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Feng.Product.Startup.AutofacContainer">
+            <summary>
+            AutofacDI容器
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Product.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

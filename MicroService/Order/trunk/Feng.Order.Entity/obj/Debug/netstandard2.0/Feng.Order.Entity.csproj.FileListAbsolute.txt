@@ -1,0 +1,9 @@
+E:\工作目录\Order\trunk\Feng.Order.Entity\bin\Debug\netstandard2.0\Feng.Order.Entity.deps.json
+E:\工作目录\Order\trunk\Feng.Order.Entity\bin\Debug\netstandard2.0\Feng.Order.Entity.dll
+E:\工作目录\Order\trunk\Feng.Order.Entity\bin\Debug\netstandard2.0\Feng.Order.Entity.pdb
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.csprojAssemblyReference.cache
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.csproj.CoreCompileInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.AssemblyInfoInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.AssemblyInfo.cs
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.dll
+E:\工作目录\Order\trunk\Feng.Order.Entity\obj\Debug\netstandard2.0\Feng.Order.Entity.pdb

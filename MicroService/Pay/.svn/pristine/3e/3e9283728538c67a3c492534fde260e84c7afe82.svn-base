@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay", "Feng.Pay\Feng.Pay.csproj", "{86B494C8-6C5C-46A6-8685-CE489F15E637}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Core", "Feng.Pay.Core\Feng.Pay.Core.csproj", "{FB645CCC-03E3-43F1-92DC-73C24871CCCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Wechat", "Feng.Pay.Wechat\Feng.Pay.Wechat.csproj", "{79A43865-18CA-4553-8DC3-A30F110162CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Alipay", "Feng.Pay.Alipay\Feng.Pay.Alipay.csproj", "{374E278E-9645-4A2B-9698-2B0B836F8D76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Unionpay", "Feng.Pay.Unionpay\Feng.Pay.Unionpay.csproj", "{2C91D9BC-01FA-4789-ADDF-437F92607C4D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Qpay", "Feng.Pay.Qpay\Feng.Pay.Qpay.csproj", "{2683E388-014B-4E94-B84B-F6F52A2819D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.JDpay", "Feng.Pay.JDpay\Feng.Pay.JDpay.csproj", "{8E0B0EAF-E932-49AE-B158-05DC051A5718}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.IService", "Feng.Pay.IService\Feng.Pay.IService.csproj", "{D0365B03-53F6-420D-8081-CCBFB044A05A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feng.Pay.Service", "Feng.Pay.Service\Feng.Pay.Service.csproj", "{BE6B09F5-761D-4665-A168-7B3FEF9760B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PayMethod", "PayMethod", "{CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feng.Pay.Model", "Feng.Pay.Model\Feng.Pay.Model.csproj", "{03DB85B9-8493-4FED-BCB0-80BC850C3D65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feng.Pay.Entity", "Feng.Pay.Entity\Feng.Pay.Entity.csproj", "{CF8EDF17-2741-44EF-B249-C87D1E4F06B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86B494C8-6C5C-46A6-8685-CE489F15E637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B494C8-6C5C-46A6-8685-CE489F15E637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B494C8-6C5C-46A6-8685-CE489F15E637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B494C8-6C5C-46A6-8685-CE489F15E637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB645CCC-03E3-43F1-92DC-73C24871CCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB645CCC-03E3-43F1-92DC-73C24871CCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB645CCC-03E3-43F1-92DC-73C24871CCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB645CCC-03E3-43F1-92DC-73C24871CCCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A43865-18CA-4553-8DC3-A30F110162CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A43865-18CA-4553-8DC3-A30F110162CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A43865-18CA-4553-8DC3-A30F110162CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A43865-18CA-4553-8DC3-A30F110162CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{374E278E-9645-4A2B-9698-2B0B836F8D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{374E278E-9645-4A2B-9698-2B0B836F8D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{374E278E-9645-4A2B-9698-2B0B836F8D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{374E278E-9645-4A2B-9698-2B0B836F8D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C91D9BC-01FA-4789-ADDF-437F92607C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C91D9BC-01FA-4789-ADDF-437F92607C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C91D9BC-01FA-4789-ADDF-437F92607C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C91D9BC-01FA-4789-ADDF-437F92607C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2683E388-014B-4E94-B84B-F6F52A2819D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2683E388-014B-4E94-B84B-F6F52A2819D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2683E388-014B-4E94-B84B-F6F52A2819D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2683E388-014B-4E94-B84B-F6F52A2819D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E0B0EAF-E932-49AE-B158-05DC051A5718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E0B0EAF-E932-49AE-B158-05DC051A5718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E0B0EAF-E932-49AE-B158-05DC051A5718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E0B0EAF-E932-49AE-B158-05DC051A5718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0365B03-53F6-420D-8081-CCBFB044A05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0365B03-53F6-420D-8081-CCBFB044A05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0365B03-53F6-420D-8081-CCBFB044A05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0365B03-53F6-420D-8081-CCBFB044A05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6B09F5-761D-4665-A168-7B3FEF9760B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6B09F5-761D-4665-A168-7B3FEF9760B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6B09F5-761D-4665-A168-7B3FEF9760B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6B09F5-761D-4665-A168-7B3FEF9760B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03DB85B9-8493-4FED-BCB0-80BC850C3D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03DB85B9-8493-4FED-BCB0-80BC850C3D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03DB85B9-8493-4FED-BCB0-80BC850C3D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03DB85B9-8493-4FED-BCB0-80BC850C3D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8EDF17-2741-44EF-B249-C87D1E4F06B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8EDF17-2741-44EF-B249-C87D1E4F06B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8EDF17-2741-44EF-B249-C87D1E4F06B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8EDF17-2741-44EF-B249-C87D1E4F06B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB645CCC-03E3-43F1-92DC-73C24871CCCA} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+		{79A43865-18CA-4553-8DC3-A30F110162CB} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+		{374E278E-9645-4A2B-9698-2B0B836F8D76} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+		{2C91D9BC-01FA-4789-ADDF-437F92607C4D} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+		{2683E388-014B-4E94-B84B-F6F52A2819D9} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+		{8E0B0EAF-E932-49AE-B158-05DC051A5718} = {CF58202B-9C3B-4572-A5A3-6AAE86B6CD0A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69E90EB2-4130-46E4-B654-4B2BD4433491}
+	EndGlobalSection
+EndGlobal

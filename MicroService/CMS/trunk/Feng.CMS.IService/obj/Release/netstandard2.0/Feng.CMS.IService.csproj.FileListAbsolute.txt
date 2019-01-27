@@ -1,0 +1,15 @@
+E:\工作目录\CMS\trunk\Feng.CMS.IService\bin\Release\netstandard2.0\Feng.CMS.IService.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS.IService\bin\Release\netstandard2.0\Feng.CMS.IService.dll
+E:\工作目录\CMS\trunk\Feng.CMS.IService\bin\Release\netstandard2.0\Feng.CMS.IService.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.IService\bin\Release\netstandard2.0\Feng.CMS.Model.dll
+E:\工作目录\CMS\trunk\Feng.CMS.IService\bin\Release\netstandard2.0\Feng.CMS.Model.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.csprojAssemblyReference.cache
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.csproj.CoreCompileInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.AssemblyInfoInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.AssemblyInfo.cs
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.csproj.CopyComplete
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.dll
+E:\工作目录\CMS\trunk\Feng.CMS.IService\obj\Release\netstandard2.0\Feng.CMS.IService.pdb
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.IService.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.IService.dll
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.IService.pdb

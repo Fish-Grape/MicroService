@@ -1,0 +1,129 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Feng.Basic;
+using Feng.CMS.IService;
+using Feng.CMS.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.CMS.Controllers
+{
+    /// <summary>
+    /// 新闻管理
+    /// </summary>
+    [Route("news")]
+    [ApiController]
+    public class NewsController : ControllerBase
+    {
+
+        public readonly INewsService _newsService;
+        public NewsController(INewsService newsService)
+        {
+            _newsService = newsService;
+        }
+        /// <summary>
+        /// 添加新闻分类
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost,Route("addmenu/{appid}")]
+        public ReturnResult<ReturnNewsCategoryModel> AddNewsCategory(string appid,[FromBody]AddNewsCategoryModel model) {
+            return _newsService.AddNewsCategory(appid, model);
+        }
+        /// <summary>
+        /// 移除新闻分类
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet,Route("delmenu/{appid}")]
+        public ReturnResult RemoveNewsCategory(string appid, int id)
+        {
+            return _newsService.RemoveNewsCategory(appid, id);
+        }
+        /// <summary>
+        /// 修改新闻栏目
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost, Route("menumodify/{appid}")]
+        public ReturnResult ModifyNewsCategory(string appid,[FromBody]NewsCategoryModel model)
+        {
+            return _newsService.ModifyNewsCategory(appid, model);
+        }
+        /// <summary>
+        /// 查询新闻栏目
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <returns></returns>
+        [HttpGet, Route("menuview/{appid}")]
+        public ReturnResult<List<NewsCateModel>> QueryNewsCategory(string appid)
+        {
+            return _newsService.QueryNewsCategory(appid);
+        }
+        /// <summary>
+        /// 添加新闻
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost, Route("add/{appid}")]
+        public ReturnResult<ReturnNewsModel> AddNews(string appid,[FromBody]AddNewsModel model)
+        {
+            return _newsService.AddNews(appid, model);
+        }
+        /// <summary>
+        /// 删除新闻
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("del/{appid}")]
+        public ReturnResult RemoveNews(string appid, int id)
+        {
+            return _newsService.RemoveNews(appid, id);
+        }
+        /// <summary>
+        /// 修改新闻
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost, Route("modify/{appid}")]
+        public ReturnResult ModifyNews(string appid,[FromBody]NewsModel model)
+        {
+            return _newsService.ModifyNews(appid, model);
+        }
+        /// <summary>
+        /// 查询新闻
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("query/{appid}")]
+        public ReturnResult<NewsModel> QueryNewsById(string appid, int id)
+        {
+            return _newsService.QueryNewsById(appid, id);
+        }
+
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="appid"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="title"></param>
+        /// <param name="ispub"></param>
+        /// <param name="cateid"></param>
+        /// <returns></returns>
+        [HttpGet,Route("querylist/{appid}")]
+        public ReturnResult<PageList<QueryNewsListModel>> QueryNewsList(string appid, int pageSize, int pageIndex, string title="", int ispub=-1, int cateid=-1)
+        {
+            return _newsService.QueryNewsList(appid, pageSize,pageIndex,title,ispub,cateid);
+        }
+    }
+}

@@ -1,0 +1,317 @@
+﻿using Feng.Basic;
+using Feng.Core;
+using Feng.Core.Config;
+using Feng.DbContext;
+using Feng.Product.Entity;
+using Feng.Product.IService;
+using Feng.Product.Model;
+using Feng.Redis;
+using Feng.Utils.Helpers;
+using SqlSugar;
+using StackExchange.Redis;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Feng.Product.Service
+{
+    public partial class ProductService : IProductService
+    {
+        public readonly SqlSugarClient _dbContext;
+        public readonly IConfig _config;
+        private readonly RedisClient _redisClient;
+        private readonly IJsonHelper _jsonHelper;
+        private readonly IDatabase redis;
+
+        public ProductService(SqlSugarClient dbContext, IConfig config, RedisClient redisClient, IJsonHelper jsonHelper)
+        {
+            _dbContext = dbContext;
+            _config = config;
+            _redisClient = redisClient;
+            _jsonHelper = jsonHelper;
+            var rediscontect = _config.StringGet("product_redis_connectString");
+            redis = _redisClient.GetDatabase(rediscontect, 3);
+        }
+
+        public ReturnResult<List<CategoryHomeModel>> QueryProductList_home(string platKey, string CategoryId)
+        {
+            var kv = redis.StringGet("QueryProductList_home_"+ CategoryId);
+            if (!kv.IsNullOrEmpty)
+            {
+                List<CategoryHomeModel> redisVal = _jsonHelper.DeserializeObject<List<CategoryHomeModel>>(kv);
+                if (!string.IsNullOrEmpty(CategoryId))
+                {
+                    if (redisVal.Count > 1)
+                        return new ReturnResult<List<CategoryHomeModel>>(redisVal.FindAll(a => a.categoryId == CategoryId));
+                    return new ReturnResult<List<CategoryHomeModel>>(redisVal);
+                }
+                else
+                {
+                    if (redisVal.Count > 1)
+                        return new ReturnResult<List<CategoryHomeModel>>(redisVal);
+                }
+            }
+
+            string filter = _config.StringGet("product_area");
+            List<CategoryHomeModel> queries = new List<CategoryHomeModel>();
+
+            queries = _dbContext.Queryable<category>()
+                  .WhereIF(!string.IsNullOrEmpty(CategoryId), a => a.id == CategoryId)
+                  .OrderBy(a => a.order, OrderByType.Asc)
+                  .Select(a => new CategoryHomeModel()
+                  {
+                      categoryId = a.id,
+                      categoryName = a.name,
+                  }).ToList();
+            if (queries != null && queries.Count > 0)
+            {
+                List<AreaModel> strAeras= _dbContext.Queryable<attribute_values>()
+                    .Where(a => a.attributeid == filter)
+                    .Select(a=>new AreaModel() {
+                        id=a.id,
+                        name=a.name
+                    }).ToList();
+                List<ProductHomeModel> productModels = _dbContext.Queryable<product, product_attribute>((a, b) => new object[] {
+                    JoinType.Inner,a.id == b.productid
+                }).Where((a, b) => b.attributeid == filter)
+                .OrderBy((a,b)=>a.name,OrderByType.Asc)
+                .Select((a, b) => new ProductHomeModel()
+                {
+                    ProductId=a.id,
+                    ProductName=a.name,
+                    AreaId=b.attr_val_id,
+                    categoryId=a.categoryid
+                }).ToList().Distinct(new ComparePro()).ToList();
+
+                if (productModels != null && productModels.Count > 0)
+                {
+                    strAeras.ForEach(a =>
+                    {
+                        a.products = productModels.FindAll(b => b.AreaId == a.id);
+                        a.categoryId = productModels[0].categoryId;
+                    });
+                }
+
+                queries.ForEach(a =>
+                {
+                    a.aeras = strAeras.FindAll(b => b.categoryId == a.categoryId);
+                });
+                redis.StringSet("QueryProductList_home_"+ CategoryId, _jsonHelper.SerializeObject(queries));
+                return new ReturnResult<List<CategoryHomeModel>>(queries);
+            }
+            else
+            {
+                return new ReturnResult<List<CategoryHomeModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有查到数据!");
+            }
+        }
+
+        public ReturnResult<List<QueryProductWebModel>> QueryProductList_web(string platKey)
+        {
+            return QueryProductList_web(platKey, "", "");
+        }
+
+        public ReturnResult<QueryProductWebModel> QueryProduct_web(string platKey, string ProductId)
+        {
+            ReturnResult<QueryProductWebModel> result = new ReturnResult<QueryProductWebModel>();
+            var querys = QueryProductList_web(platKey, "", ProductId).Data;
+            if (querys != null && querys.Count != 0)
+            {
+                result = new ReturnResult<QueryProductWebModel>(querys.Find(a => a.Products.Find(b => b.ProductId == ProductId) != null));
+            }
+            return result;
+        }
+
+        public ReturnResult<List<QueryProductWebModel>> QueryProductList_web(string platKey, string CategoryId)
+        {
+            return QueryProductList_web(platKey, CategoryId, "");
+        }
+
+        public ReturnResult<List<QueryProductWebModel>> QueryProductList_web(string platKey, string CategoryId, string ProductId = "")
+        {
+            var kv = redis.StringGet("QueryProductList_web_" + CategoryId + ProductId);
+            if (!kv.IsNullOrEmpty)
+                return new ReturnResult<List<QueryProductWebModel>>(_jsonHelper.DeserializeObject<List<QueryProductWebModel>>(kv));
+
+            //一级：分类信息
+            List<QueryProductWebModel> queries = new List<QueryProductWebModel>();
+            queries = _dbContext.Queryable<category>()
+                .WhereIF(!string.IsNullOrEmpty(CategoryId), a => a.id == CategoryId)
+                .OrderBy(a => a.order, OrderByType.Asc)
+                .Select(a => new QueryProductWebModel()
+                {
+                    CategoryId = a.id,
+                    CategoryName = a.name,
+                    ParentId = a.pid,
+                }).ToList();
+
+            if (queries != null && queries.Count > 0)
+            {
+                //二级：产品基本信息
+                var products = _dbContext.Queryable<product>()
+                .WhereIF(!string.IsNullOrEmpty(ProductId), st => st.id == ProductId)
+                .In(st => st.categoryid, (from x in queries select x.CategoryId).ToArray())
+                .OrderBy(a => a.name, OrderByType.Asc)
+                .Select(st => new ProductWebModel()
+                {
+                    CategoryId = st.categoryid,
+                    ProductId = st.id,
+                    ProductName = st.name,
+                    Description = st.description
+                }).ToList();
+
+                if (products != null && products.Count > 0)
+                {
+                    //三级：属性信息
+                    var AttrList = _dbContext.Queryable<attribute, product_attribute>((sc, st) => new object[] {
+                          JoinType.Inner,st.attributeid==sc.id,
+                        })
+                    .WhereIF(!string.IsNullOrEmpty(ProductId), (sc, st) => st.productid == ProductId)
+                    .OrderBy((sc, st) => sc.order, OrderByType.Asc)
+                    .Select((sc, st) => new ProductAttrWebModel()
+                    {
+                        AttributeId = sc.id,
+                        AttributeName = sc.name,
+                        ProductId = st.productid,
+                        is_sales = sc.is_sales,
+                        is_multi = sc.is_multi
+                    }).ToList().Distinct(new Compare()).ToList();
+                    //四级：属性值信息
+                    if (AttrList != null && AttrList.Count > 0)
+                    {
+                        var values = _dbContext.Queryable<attribute_values, product_attribute>((a, b) => new object[] {
+                            JoinType.Inner,a.id==b.attr_val_id
+                        })
+                        .WhereIF(!string.IsNullOrEmpty(ProductId), (a, b) => b.productid == ProductId)
+                            .In(a => a.attributeid, (from x in AttrList.ToArray() select x.AttributeId).ToArray())
+                            .Select((a, b) => new AttributeValueModel()
+                            {
+                                id = a.id,
+                                attributeid = a.attributeid,
+                                productId = b.productid,
+                                valueName = a.name
+                            }).ToList().Distinct(new CompareAttrVal()).ToList();
+                        AttrList.ForEach(a =>
+                        {
+                            a.AttributeValues = values.FindAll(x => x.attributeid == a.AttributeId && a.ProductId == x.productId);
+                        });
+                    }
+
+                    //三级：sku信息
+                    var skuList = _dbContext.Queryable<product_sku>()
+                        .WhereIF(!string.IsNullOrEmpty(ProductId), st => st.productid == ProductId)
+                        .Select(d => new ProductSkuModel()
+                        {
+                            count = d.count,
+                            price = d.price,
+                            name = d.name,
+                            attrJson = d.attr_json,
+                            barCode = d.barcode
+                        }).ToList();
+
+                    //三级：媒体信息
+                    var mediaList = _dbContext.Queryable<product_media>()
+                        .WhereIF(!string.IsNullOrEmpty(ProductId), st => st.productid == ProductId)
+                        .OrderBy(d => d.order, OrderByType.Asc)
+                        .Select(d => new ProductMediaModel()
+                        {
+                            productId = d.productid,
+                            mediaType = d.media_type,
+                            mediaUrl = d.media_url,
+                            displayOrder = d.order
+                        }).ToList();
+
+                    //给产品下面的属性、sku、媒体赋值
+                    products.ForEach(x =>
+                    {
+                        x.SalesAttrList = AttrList.FindAll(d => d.ProductId == x.ProductId && d.is_sales == true);
+                        x.NoSalesAttrList = AttrList.FindAll(d => d.ProductId == x.ProductId && d.is_sales == false);
+                        x.productSkus = skuList.FindAll(d => d.productId == x.ProductId);
+                        x.productMedias = mediaList.FindAll(d => d.productId == x.ProductId);
+                    });
+
+                    queries.ForEach(a =>
+                    {
+                        //二级：产品基本信息
+                        a.Products = products.FindAll(x => x.CategoryId == a.CategoryId);
+                    });
+                }
+                var list = ReList("", queries);
+                //存入redis缓存
+                redis.StringSet("QueryProductList_web_" + CategoryId + ProductId, _jsonHelper.SerializeObject(list));
+                return new ReturnResult<List<QueryProductWebModel>>(list);
+            }
+            else
+            {
+                return new ReturnResult<List<QueryProductWebModel>>((int)ErrorCodeEnum.Error_NoData, null, "没有查到数据!");
+            }
+        }
+
+        /// <summary>
+        /// 去除重复
+        /// </summary>
+        public class Compare : IEqualityComparer<ProductAttrWebModel>
+        {
+            public bool Equals(ProductAttrWebModel x, ProductAttrWebModel y)
+            {
+                return x.AttributeId == y.AttributeId && x.ProductId==y.ProductId;//可以自定义去重规则，此处将Id相同的就作为重复记录，不管学生的爱好是什么
+            }
+            public int GetHashCode(ProductAttrWebModel obj)
+            {
+                return obj.AttributeId.GetHashCode();
+            }
+        }
+
+        /// <summary>
+        /// 去除重复(属性值)
+        /// </summary>
+        public class CompareAttrVal : IEqualityComparer<AttributeValueModel>
+        {
+            public bool Equals(AttributeValueModel x, AttributeValueModel y)
+            {
+                return x.id == y.id && x.productId == y.productId;//可以自定义去重规则，此处将Id相同的就作为重复记录，不管学生的爱好是什么
+            }
+            public int GetHashCode(AttributeValueModel obj)
+            {
+                return obj.id.GetHashCode();
+            }
+        }
+
+        /// <summary>
+        /// 去除重复
+        /// </summary>
+        public class ComparePro : IEqualityComparer<ProductHomeModel>
+        {
+            public bool Equals(ProductHomeModel x, ProductHomeModel y)
+            {
+                return x.ProductId == y.ProductId;//可以自定义去重规则，此处将Id相同的就作为重复记录，不管学生的爱好是什么
+            }
+            public int GetHashCode(ProductHomeModel obj)
+            {
+                return obj.ProductId.GetHashCode();
+            }
+        }
+
+        private List<QueryProductWebModel> ReList(string pid, List<QueryProductWebModel> list)
+        {
+            var child = list.FindAll(x => x.ParentId == pid);
+            if (child.Count <= 0)
+                return null;
+            List<QueryProductWebModel> result = new List<QueryProductWebModel>();
+
+            child.ForEach(a =>
+            {
+                QueryProductWebModel model = new QueryProductWebModel()
+                {
+                    CategoryId = a.CategoryId,
+                    CategoryName = a.CategoryName,
+                    ParentId = a.ParentId,
+                    Products=a.Products,
+                    Children = ReList(a.CategoryId, list)
+                };
+                result.Add(model);
+            });
+            return result;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Feng.CMS.Service</id>
+    <version>1.0.0</version>
+    <authors>Feng.CMS.Service</authors>
+    <owners>Feng.CMS.Service</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Feng.CMS.Entity" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Feng.CMS.IService" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Feng.CMS.Model" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Feng.Utils" version="1.0.7" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Service.dll" target="lib\netstandard2.0\Feng.CMS.Service.dll" />
+  </files>
+</package>

@@ -1,0 +1,54 @@
+{
+  "JwtAuthorize": {
+    "Secret": "ZNaLNzBznVw0cVctWVP8PG8KeU1v9Y7u",
+    "Issuer": "Feng",
+    "Audience": "aone",
+    "PolicyName": "permission",
+    "DefaultScheme": "Bearer",
+    "IsHttps": false,
+    "RequireExpirationTime": true,
+    "MySqlConnectionString": "",
+    "ProjectName": "Feng.Product",
+    "RefreshInteval": 300
+  },
+  "SqlSugarClient": {
+    "ConnectionString": "server=192.168.1.145;database=feng.product;uid=alion;pwd=Alion_2018;",
+    "DbType": "MySql",
+    "InitKeyType": "Attribute",
+    "IsAutoCloseConnection": false
+  },
+  "ConfigService": {
+    "AppId": "CoreFeng",
+    "AppSercet": "CoreFeng@2018",
+    "RedisConnectionString": "",
+    "RedisListener": false,
+    "RefreshInteval": 300,
+    "ServerUrl": "http://192.168.1.145:5000",
+    "UseServiceDiscovery": false,
+    "ServiceName": "conf_api",
+    "NamespaceName": "Feng.Product",
+    "Env": "dev"
+  },
+  "EventBus": {
+    "RabbitMQ": {
+      "HostName": "192.168.1.145",
+      "Port": 5672,
+      "UserName": "Alion",
+      "Password": "Alion_2018",
+      "QueueName": "Feng.Product"
+    }
+  },
+  "ServiceDiscovery": {
+    "ServiceName": "product_api_test",
+    "Version": "1.0.1",
+    "HealthCheckTemplate": "http://192.168.1.52:5014/status",
+    "Endpoint": "http://192.168.1.52:5014",
+    "Consul": {
+      "HttpEndpoint": "http://192.168.1.145:8500",
+      "DnsEndpoint": {
+        "Address": "192.168.1.145",
+        "Port": 8500
+      }
+    }
+  }
+}

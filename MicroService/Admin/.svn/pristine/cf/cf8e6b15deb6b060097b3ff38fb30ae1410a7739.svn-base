@@ -1,0 +1,27 @@
+﻿{
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tracing": {
+    "SystemName": "Feng.Admin.Api",
+    "IgnoredRoutesRegexPatterns": [ "/status", "/$", "/config" ]
+  },
+  "Project": {
+    "Name": "Feng.Admin.Api",
+    "DocName": "admin_api",
+    "Title": "运维平台",
+    "Description": "系统运维",
+    "Contact": {
+      "Name": "gubin",
+      "Email": "auth@feng.com"
+    },
+    "Version": "v1.0.0",
+    "XmlFile": "Feng.Admin.xml"
+  }
+}

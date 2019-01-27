@@ -1,0 +1,44 @@
+﻿using Feng.Basic;
+using Feng.CMS.Entity;
+using Feng.CMS.IService;
+using Feng.CMS.Model;
+using Feng.Core;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Feng.CMS.Service
+{
+    public partial class NewsService : INewsService
+    {
+        public ReturnResult<List<QueryNewsListModel>> QueryNewsList(string appid, int cateid)
+        {
+            var list = _dbContext.Queryable<news, news_menu>((a, b) =>
+                 new object[]{
+                    JoinType.Left,a.menuid==b.id
+                 })
+                .Where((a, b) => b.appid == appid)
+                .WhereIF(cateid > 0, (a, b) => b.id == cateid)
+                .Where(a => a.ispub)
+                .OrderBy((a, b) => b.order, OrderByType.Asc)
+                .OrderBy((a, b) => a.order, OrderByType.Asc)
+                .Select((a, b) => new QueryNewsListModel
+                {
+                    id = a.id,
+                    title = a.title,
+                    menu = b.title,
+                    author = a.author,
+                    isPublish = a.ispub,
+                    addtime = a.addtime.Value,
+                    visterCount = a.vister_count
+                })
+                .ToList();
+            if (list.Count <= 0)
+            {
+                return new ReturnResult<List<QueryNewsListModel>>(list);
+            }
+            return new ReturnResult<List<QueryNewsListModel>>(list);
+        }
+    }
+}

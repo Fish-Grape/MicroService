@@ -1,0 +1,12 @@
+E:\工作目录\Identity\trunk\Feng.Identity.IService\bin\Debug\netstandard2.0\Feng.Identity.IService.deps.json
+E:\工作目录\Identity\trunk\Feng.Identity.IService\bin\Debug\netstandard2.0\Feng.Identity.IService.dll
+E:\工作目录\Identity\trunk\Feng.Identity.IService\bin\Debug\netstandard2.0\Feng.Identity.IService.pdb
+E:\工作目录\Identity\trunk\Feng.Identity.IService\bin\Debug\netstandard2.0\Feng.Identity.Model.dll
+E:\工作目录\Identity\trunk\Feng.Identity.IService\bin\Debug\netstandard2.0\Feng.Identity.Model.pdb
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.csprojAssemblyReference.cache
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.csproj.CoreCompileInputs.cache
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.AssemblyInfoInputs.cache
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.AssemblyInfo.cs
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.csproj.CopyComplete
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.dll
+E:\工作目录\Identity\trunk\Feng.Identity.IService\obj\Debug\netstandard2.0\Feng.Identity.IService.pdb

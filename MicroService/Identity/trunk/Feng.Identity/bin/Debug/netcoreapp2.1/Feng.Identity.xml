@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Identity</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Identity.Controllers.AuthController">
+            <summary>
+            认证授权控制器
+            </summary>
+        </member>
+        <member name="F:Feng.Identity.Controllers.AuthController._authService">
+            <summary>
+            业务实现
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.#ctor(Feng.Identity.IService.IAuthService)">
+            <summary>
+            构造
+            </summary>
+            <param name="authService"></param>
+        </member>
+        <member name="M:Feng.Identity.Controllers.AuthController.Login(Feng.Identity.Model.Auth.LoginModel)">
+            <summary>
+            账户登陆 - 密码登陆
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Identity.Controllers.ToolController">
+            <summary>
+            工具控制器
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Controllers.ToolController.ValidateCode(System.String,System.Int32,System.Int32)">
+            <summary>
+            图形验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Identity.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Identity.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,12 @@
+E:\工作目录\Order\trunk\Feng.Order.IService\bin\Release\netstandard2.0\Feng.Order.IService.deps.json
+E:\工作目录\Order\trunk\Feng.Order.IService\bin\Release\netstandard2.0\Feng.Order.IService.dll
+E:\工作目录\Order\trunk\Feng.Order.IService\bin\Release\netstandard2.0\Feng.Order.IService.pdb
+E:\工作目录\Order\trunk\Feng.Order.IService\bin\Release\netstandard2.0\Feng.Order.Model.dll
+E:\工作目录\Order\trunk\Feng.Order.IService\bin\Release\netstandard2.0\Feng.Order.Model.pdb
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.csprojAssemblyReference.cache
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.csproj.CoreCompileInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.AssemblyInfoInputs.cache
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.AssemblyInfo.cs
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.csproj.CopyComplete
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.dll
+E:\工作目录\Order\trunk\Feng.Order.IService\obj\Release\netstandard2.0\Feng.Order.IService.pdb

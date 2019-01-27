@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.AuthUser</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.AuthUser.Controllers.UserController">
+            <summary>
+            认证用户
+            </summary>
+        </member>
+        <member name="M:Feng.AuthUser.Controllers.UserController.GetUserList(System.Int32,System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            获取用户列表
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="account"></param>
+            <param name="username"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.AuthUser.Controllers.UserController.ModifyStatus(Feng.Identity.Model.AuthManager.ModifyUserStatus)">
+            <summary>
+            修改用户状态
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Feng.AuthUser.Startup.AutofacContainer">
+            <summary>
+            AutofacDI容器
+            </summary>
+        </member>
+        <member name="M:Feng.AuthUser.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.AuthUser.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+        <member name="T:Feng.AuthUser.Startup.AutofacModuleRegister">
+            <summary>
+            Autofac扩展注册
+            </summary>
+        </member>
+        <member name="M:Feng.AuthUser.Startup.AutofacModuleRegister.Load(Autofac.ContainerBuilder)">
+            <summary>
+            装载autofac方式注册
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>

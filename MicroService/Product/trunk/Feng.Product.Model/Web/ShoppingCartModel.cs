@@ -1,0 +1,190 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Feng.Product.Model
+{
+
+    public class QueryShoppingCartModel
+    {
+        public QueryShoppingCartModel()
+        {
+            skuDetails = new List<QueryShopSkuModel>();
+        }
+        /// <summary>
+        /// 购物车主键
+        /// </summary>
+        public string ShoppingCartId { get; set; }
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public int user_id { get; set; }
+        /// <summary>
+        /// 下单用户
+        /// </summary>
+        public string user_name { get; set; }
+        /// <summary>
+        /// 分类id
+        /// </summary>
+        public string categoryId { get; set; }
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string productName { get; set; }
+        /// <summary>
+        /// 购买方式
+        /// </summary>
+        public int BuyMethod { get; set; }
+        /// <summary>
+        /// 购买时长
+        /// </summary>
+        public int BuyPeriod { get; set; }
+        /// <summary>
+        /// 1:First,2:Year
+        /// </summary>
+        public string valid_type { get; set; }
+        /// <summary>
+        /// 购买sku详情
+        /// </summary>
+        public List<QueryShopSkuModel> skuDetails { get; set; }
+    }
+
+    public class QueryShoppingCartDetailModel : AddShoppingCartDetailModel
+    {
+        /// <summary>
+        /// 购物车主键
+        /// </summary>
+        public string ShoppingCartId { get; set; }
+    }
+
+    public class AddShoppingCartModel
+    {
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public int user_id { get; set; }
+        /// <summary>
+        /// 下单用户
+        /// </summary>
+        public string user_name { get; set; }
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 产品名称
+        /// </summary>
+        public string productName { get; set; }
+        /// <summary>
+        /// 购买方式
+        /// </summary>
+        public int BuyMethod { get; set; }
+        /// <summary>
+        /// 购买时长
+        /// </summary>
+        public int BuyPeriod { get; set; }
+        /// <summary>
+        /// 1:First,2:Year
+        /// </summary>
+        public string valid_type { get; set; }
+        /// <summary>
+        /// sku列表
+        /// </summary>
+        public List<ShopSkuDetail> SkuDetails { get; set; }
+    }
+
+    /// <summary>
+    /// sku模型
+    /// </summary>
+    public class QueryShopSkuModel
+    {
+        public QueryShopSkuModel()
+        {
+            cartDetailModels = new List<QueryShoppingCartDetailModel>();
+        }
+        /// <summary>
+        /// 购物车主键
+        /// </summary>
+        public string ShoppingCartId { get; set; }
+        /// <summary>
+        /// 产品id
+        /// </summary>
+        public string productId { get; set; }
+        /// <summary>
+        /// 规格字符串
+        /// </summary>
+        public string skuJson { get; set; }
+        /// <summary>
+        /// 规格id
+        /// </summary>
+        public string skuId { get; set; }
+        /// <summary>
+        /// 产品单价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 规格名称
+        /// </summary>
+        public string skuName { get; set; }
+        /// <summary>
+        /// 购物车详情
+        /// </summary>
+        public List<QueryShoppingCartDetailModel> cartDetailModels { get; set; }
+    }
+
+    public class ShopSkuDetail{
+        /// <summary>
+        /// 规格id
+        /// </summary>
+        public string skuId { get; set; }
+        /// <summary>
+        /// 产品单价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
+        /// 规格名称
+        /// </summary>
+        public string skuName { get; set; }
+        /// <summary>
+        /// 购物车详情
+        /// </summary>
+        public List<AddShoppingCartDetailModel> cartDetailModels { get; set; }
+    }
+
+    public class AddShoppingCartDetailModel {
+        /// <summary>
+        /// 附加属性值id
+        /// </summary>
+        public string extend_attr_id { get; set; }
+        /// <summary>
+        /// 属性值
+        /// </summary>
+        public string extend_attr_name { get; set; }
+    }
+
+    public class ModifyProNumModel
+    {
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int number { get; set; }
+    }
+
+    public class RemoveCartModel
+    {
+        public int user_id { get; set; }
+        /// <summary>
+        /// 1:First,2:Year
+        /// </summary>
+        public string valid_type { get; set; }
+
+        public string product_id { get; set; }
+    }
+}

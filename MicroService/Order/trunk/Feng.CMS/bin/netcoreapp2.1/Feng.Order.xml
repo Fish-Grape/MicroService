@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.Order</name>
+    </assembly>
+    <members>
+        <member name="T:Feng.Order.web.Controllers.v1.OrdersWebController">
+            <summary>
+            订单管理
+            </summary>
+        </member>
+        <member name="M:Feng.Order.web.Controllers.v1.OrdersWebController.QueryOrder(System.Int32,System.Int32)">
+            <summary>
+            查询订单
+            </summary>
+            <param name="userId"></param>
+            <param name="order_status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.web.Controllers.v1.OrdersWebController.QueryPageOrder(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            分页查询订单
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <param name="userId"></param>
+            <param name="order_status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.web.Controllers.v1.OrdersWebController.QueryOrderById(System.String)">
+            <summary>
+            根据id查询订单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.web.Controllers.v1.OrdersWebController.AddOrder(Feng.Order.Model.AddOrdersWebModel)">
+            <summary>
+            新增订单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Feng.Order.Controllers.OrdersController">
+            <summary>
+            订单管理
+            </summary>
+        </member>
+        <member name="M:Feng.Order.Controllers.OrdersController.ApproveOrder(Feng.Order.Model.ApproveOrdersModel)">
+            <summary>
+            审核订单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Controllers.OrdersController.QueryOrder">
+            <summary>
+            查询订单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Controllers.OrdersController.QueryPageOrder(System.Int32,System.Int32)">
+            <summary>
+            分页查询订单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Controllers.OrdersController.QueryOrderById(System.String)">
+            <summary>
+            根据id查询订单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Controllers.OrdersController.ModifyOrder(Feng.Order.Model.ModifyOrdersModel)">
+            <summary>
+            修改订单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Feng.Order.Startup.ConfigSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:Feng.Order.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.Order.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+        <member name="M:Feng.CMS.Config.DefaultModuleRegister.GetObjByReflect(System.String,System.String,System.Object[])">
+            <summary>
+            反射获取指定类型的对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="assemblyName">程序集</param>
+            <param name="fullName">全类名</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

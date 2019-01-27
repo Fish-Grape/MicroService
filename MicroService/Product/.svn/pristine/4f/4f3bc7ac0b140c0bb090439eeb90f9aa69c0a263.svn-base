@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Feng.Basic;
+using Feng.Product.IService;
+using Feng.Product.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.Product.Areas.web.Controllers
+{
+    /// <summary>
+    /// 前台接口
+    /// </summary>
+    [ApiController]
+    [ApiVersion("1.0")]
+    [Route("{area}/v{version:apiVersion}/[controller]")]
+    public class ProductWebController : ControllerBase
+    {
+        /// <summary>
+        /// 产品服务接口
+        /// </summary>
+        public readonly IProductService _productService;
+        /// <summary>
+        /// 注入
+        /// </summary>
+        /// <param name="productService"></param>
+        public ProductWebController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="productName"></param>
+        /// <param name="cid"></param>
+        /// <param name="brandName"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [HttpGet, Route("query")]
+        public ReturnResult<PageList<QueryProductModel>> QueryProductList(int pageSize, int pageIndex, string productName = "", string cid = "", string brandName = "", string startDate = "", string endDate = "")
+        {
+            var platKey = Utils.Extensions.Plat;
+            return _productService.QueryProductList(platKey, pageSize, pageIndex, productName, cid, brandName, startDate, endDate, 1);
+        }
+
+        /// <summary>
+        /// 根据id获取产品
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet, Route("query_byid")]
+        public ReturnResult<ProductModel> QueryProductById(string id)
+        {
+            var platKey = Utils.Extensions.Plat;
+            return _productService.QueryProductById(platKey, id,true);
+        }
+    }
+}

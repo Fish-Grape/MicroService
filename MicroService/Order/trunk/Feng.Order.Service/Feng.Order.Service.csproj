@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Feng.Utils" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.Order.Entity\Feng.Order.Entity.csproj" />
+    <ProjectReference Include="..\Feng.Order.IService\Feng.Order.IService.csproj" />
+    <ProjectReference Include="..\Feng.Order.Model\Feng.Order.Model.csproj" />
+  </ItemGroup>
+
+</Project>

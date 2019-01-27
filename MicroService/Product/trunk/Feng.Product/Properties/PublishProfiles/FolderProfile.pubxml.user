@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\zhaobo-it\技术\Publisher\api.test.product</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>01/22/2019 18:49:04</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>01/22/2019 18:49:04</publishTime>
+    </File>
+    <File Include="appsettings.Production.json">
+      <publishTime>01/22/2019 18:49:04</publishTime>
+    </File>
+    <File Include="AspectCore.Abstractions.dll">
+      <publishTime>11/25/2018 09:26:06</publishTime>
+    </File>
+    <File Include="AspectCore.Core.dll">
+      <publishTime>11/25/2018 09:26:08</publishTime>
+    </File>
+    <File Include="AspectCore.Extensions.Reflection.dll">
+      <publishTime>11/25/2018 09:26:06</publishTime>
+    </File>
+    <File Include="Autofac.dll">
+      <publishTime>05/09/2018 11:57:54</publishTime>
+    </File>
+    <File Include="Autofac.Extensions.DependencyInjection.dll">
+      <publishTime>11/06/2018 22:57:54</publishTime>
+    </File>
+    <File Include="Consul.dll">
+      <publishTime>07/25/2018 19:02:34</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Feng.Authorize.dll">
+      <publishTime>01/22/2019 06:17:42</publishTime>
+    </File>
+    <File Include="Feng.Authorize.MySql.dll">
+      <publishTime>01/22/2019 06:22:54</publishTime>
+    </File>
+    <File Include="Feng.Basic.dll">
+      <publishTime>12/25/2018 02:43:30</publishTime>
+    </File>
+    <File Include="Feng.Config.dll">
+      <publishTime>12/22/2018 05:17:44</publishTime>
+    </File>
+    <File Include="Feng.Core.dll">
+      <publishTime>12/20/2018 09:03:20</publishTime>
+    </File>
+    <File Include="Feng.DbContext.dll">
+      <publishTime>12/25/2018 07:00:46</publishTime>
+    </File>
+    <File Include="Feng.EventBus.dll">
+      <publishTime>12/20/2018 09:04:58</publishTime>
+    </File>
+    <File Include="Feng.EventBus.RabbitMQ.dll">
+      <publishTime>12/20/2018 09:06:20</publishTime>
+    </File>
+    <File Include="Feng.LoadBalancer.dll">
+      <publishTime>12/20/2018 09:05:32</publishTime>
+    </File>
+    <File Include="Feng.Logging.dll">
+      <publishTime>01/08/2019 04:26:26</publishTime>
+    </File>
+    <File Include="Feng.Logging.Event.dll">
+      <publishTime>01/08/2019 04:27:06</publishTime>
+    </File>
+    <File Include="Feng.Product.deps.json">
+      <publishTime>01/26/2019 14:57:09</publishTime>
+    </File>
+    <File Include="Feng.Product.dll">
+      <publishTime>01/26/2019 14:56:47</publishTime>
+    </File>
+    <File Include="Feng.Product.Entity.dll">
+      <publishTime>01/26/2019 10:31:39</publishTime>
+    </File>
+    <File Include="Feng.Product.Entity.pdb">
+      <publishTime>01/26/2019 10:31:39</publishTime>
+    </File>
+    <File Include="Feng.Product.IService.dll">
+      <publishTime>01/26/2019 14:56:42</publishTime>
+    </File>
+    <File Include="Feng.Product.IService.pdb">
+      <publishTime>01/26/2019 14:56:42</publishTime>
+    </File>
+    <File Include="Feng.Product.Model.dll">
+      <publishTime>01/26/2019 10:31:39</publishTime>
+    </File>
+    <File Include="Feng.Product.Model.pdb">
+      <publishTime>01/26/2019 10:31:39</publishTime>
+    </File>
+    <File Include="Feng.Product.pdb">
+      <publishTime>01/26/2019 14:56:47</publishTime>
+    </File>
+    <File Include="Feng.Product.runtimeconfig.json">
+      <publishTime>01/26/2019 14:57:09</publishTime>
+    </File>
+    <File Include="Feng.Product.Service.dll">
+      <publishTime>01/26/2019 14:56:44</publishTime>
+    </File>
+    <File Include="Feng.Product.Service.pdb">
+      <publishTime>01/26/2019 14:56:44</publishTime>
+    </File>
+    <File Include="Feng.Product.xml">
+      <publishTime>01/26/2019 14:56:47</publishTime>
+    </File>
+    <File Include="Feng.Redis.dll">
+      <publishTime>12/20/2018 02:58:54</publishTime>
+    </File>
+    <File Include="Feng.ServiceDiscovery.Consul.dll">
+      <publishTime>12/20/2018 09:05:48</publishTime>
+    </File>
+    <File Include="Feng.ServiceDiscovery.dll">
+      <publishTime>12/20/2018 09:05:42</publishTime>
+    </File>
+    <File Include="Feng.Swagger.dll">
+      <publishTime>01/19/2019 05:47:46</publishTime>
+    </File>
+    <File Include="Feng.Tracing.dll">
+      <publishTime>12/20/2018 09:03:26</publishTime>
+    </File>
+    <File Include="Feng.Tracing.Event.dll">
+      <publishTime>12/20/2018 09:04:58</publishTime>
+    </File>
+    <File Include="Feng.Utils.dll">
+      <publishTime>01/16/2019 08:31:06</publishTime>
+    </File>
+    <File Include="hosting.json">
+      <publishTime>01/10/2019 11:02:08</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Connections.Abstractions.dll">
+      <publishTime>06/29/2018 22:55:48</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.dll">
+      <publishTime>06/29/2018 22:55:48</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll">
+      <publishTime>02/09/2018 11:37:32</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Versioning.dll">
+      <publishTime>01/05/2018 09:51:56</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Core.dll">
+      <publishTime>06/29/2018 22:55:48</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.dll">
+      <publishTime>06/29/2018 22:55:54</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Https.dll">
+      <publishTime>06/29/2018 22:55:46</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll">
+      <publishTime>06/29/2018 22:55:48</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll">
+      <publishTime>06/29/2018 22:55:42</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:02</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:04</publishTime>
+    </File>
+    <File Include="Microsoft.Data.Sqlite.dll">
+      <publishTime>07/25/2017 00:48:04</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>06/07/2018 00:27:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>06/07/2018 00:26:54</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>06/07/2018 00:26:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="Microsoft.Win32.SystemEvents.dll">
+      <publishTime>05/15/2018 13:29:34</publishTime>
+    </File>
+    <File Include="MySql.Data.dll">
+      <publishTime>10/09/2017 04:58:08</publishTime>
+    </File>
+    <File Include="Nito.AsyncEx.Context.dll">
+      <publishTime>09/18/2016 01:39:38</publishTime>
+    </File>
+    <File Include="Nito.AsyncEx.Tasks.dll">
+      <publishTime>09/18/2016 01:33:38</publishTime>
+    </File>
+    <File Include="Nito.Disposables.dll">
+      <publishTime>08/16/2016 03:15:26</publishTime>
+    </File>
+    <File Include="Npgsql.dll">
+      <publishTime>02/27/2018 20:36:38</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>04/24/2018 21:27:10</publishTime>
+    </File>
+    <File Include="Oracle.ManagedDataAccess.dll">
+      <publishTime>09/11/2018 14:31:38</publishTime>
+    </File>
+    <File Include="Pipelines.Sockets.Unofficial.dll">
+      <publishTime>09/27/2018 13:50:42</publishTime>
+    </File>
+    <File Include="Polly.dll">
+      <publishTime>11/27/2018 08:42:40</publishTime>
+    </File>
+    <File Include="RabbitMQ.Client.dll">
+      <publishTime>06/18/2018 15:49:02</publishTime>
+    </File>
+    <File Include="runtimes/linux-x64/native/libe_sqlite3.so">
+      <publishTime>06/28/2017 14:53:36</publishTime>
+    </File>
+    <File Include="runtimes/linux-x86/native/libe_sqlite3.so">
+      <publishTime>06/28/2017 14:53:36</publishTime>
+    </File>
+    <File Include="runtimes/osx-x64/native/libe_sqlite3.dylib">
+      <publishTime>06/28/2017 14:53:34</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll">
+      <publishTime>09/18/2018 19:38:14</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netstandard1.3/System.Net.Http.WinHttpHandler.dll">
+      <publishTime>06/11/2016 23:14:00</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll">
+      <publishTime>05/15/2018 13:29:34</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll">
+      <publishTime>05/15/2018 13:29:36</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll">
+      <publishTime>09/18/2018 19:38:14</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netstandard1.3/System.Net.Http.WinHttpHandler.dll">
+      <publishTime>06/11/2016 23:14:00</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>05/15/2018 13:29:44</publishTime>
+    </File>
+    <File Include="runtimes/win7-x64/native/e_sqlite3.dll">
+      <publishTime>06/28/2017 14:54:16</publishTime>
+    </File>
+    <File Include="runtimes/win7-x86/native/e_sqlite3.dll">
+      <publishTime>06/28/2017 14:54:16</publishTime>
+    </File>
+    <File Include="SemVer.dll">
+      <publishTime>07/22/2018 09:18:30</publishTime>
+    </File>
+    <File Include="SQLitePCLRaw.batteries_green.dll">
+      <publishTime>06/28/2017 14:53:28</publishTime>
+    </File>
+    <File Include="SQLitePCLRaw.batteries_v2.dll">
+      <publishTime>06/28/2017 14:53:28</publishTime>
+    </File>
+    <File Include="SQLitePCLRaw.core.dll">
+      <publishTime>06/28/2017 14:53:26</publishTime>
+    </File>
+    <File Include="SQLitePCLRaw.provider.e_sqlite3.dll">
+      <publishTime>06/28/2017 14:53:48</publishTime>
+    </File>
+    <File Include="SqlSugar.dll">
+      <publishTime>12/12/2018 02:11:52</publishTime>
+    </File>
+    <File Include="StackExchange.Redis.dll">
+      <publishTime>11/26/2018 13:55:32</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.dll">
+      <publishTime>11/07/2018 10:25:10</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.Swagger.dll">
+      <publishTime>11/07/2018 10:25:06</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
+      <publishTime>11/07/2018 10:25:08</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
+      <publishTime>11/07/2018 10:25:06</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>01/07/2019 12:13:39</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>01/07/2019 12:13:39</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>01/07/2019 12:13:39</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>01/07/2019 12:13:39</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>01/07/2019 12:13:39</publishTime>
+    </File>
+    <File Include="System.Configuration.ConfigurationManager.dll">
+      <publishTime>05/15/2018 13:29:38</publishTime>
+    </File>
+    <File Include="System.Diagnostics.PerformanceCounter.dll">
+      <publishTime>05/15/2018 13:29:36</publishTime>
+    </File>
+    <File Include="System.Drawing.Common.dll">
+      <publishTime>09/18/2018 19:38:14</publishTime>
+    </File>
+    <File Include="System.IO.Pipelines.dll">
+      <publishTime>08/13/2018 22:50:14</publishTime>
+    </File>
+    <File Include="System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>05/15/2018 13:29:44</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>01/26/2019 14:57:09</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

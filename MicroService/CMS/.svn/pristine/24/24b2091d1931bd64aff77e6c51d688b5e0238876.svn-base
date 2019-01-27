@@ -1,0 +1,24 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Feng.CMS.Controllers.v1
+{
+    /// <summary>
+    /// 前台
+    /// </summary>
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    [ApiController]
+    public class StageController : Controller
+    {
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("Index")]
+        public ViewResult Index()
+        {
+            return View();
+        }
+      
+    }
+}

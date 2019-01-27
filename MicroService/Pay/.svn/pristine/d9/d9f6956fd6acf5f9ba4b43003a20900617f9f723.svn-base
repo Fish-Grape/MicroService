@@ -1,0 +1,27 @@
+{
+  "Logging": {
+    "IncludeScopes": true,
+    "LogLevel": {
+      "Default": "Error",
+      "System": "Error",
+      "Microsoft": "Error"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tracing": {
+    "SystemName": "Feng.Pay.Api",
+    "IgnoredRoutesRegexPatterns": [ "/status", "/$", "/config" ]
+  },
+  "Project": {
+    "Name": "Feng.Pay.Api",
+    "DocName": "pay_api",
+    "Title": "支付管理",
+    "Description": "支付管理系统",
+    "Contact": {
+      "Name": "gubin",
+      "Email": "auth@feng.com"
+    },
+    "Version": "v1.0.1",
+    "XmlFile": "Feng.Pay.xml"
+  }
+}

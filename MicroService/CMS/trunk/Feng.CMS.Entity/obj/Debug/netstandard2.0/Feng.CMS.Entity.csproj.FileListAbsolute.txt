@@ -1,0 +1,12 @@
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\bin\Debug\netstandard2.0\Feng.CMS.Entity.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\bin\Debug\netstandard2.0\Feng.CMS.Entity.dll
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\bin\Debug\netstandard2.0\Feng.CMS.Entity.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.csproj.CoreCompileInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.AssemblyInfoInputs.cache
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.AssemblyInfo.cs
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.dll
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.pdb
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Entity.deps.json
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Entity.dll
+E:\工作目录\CMS\trunk\Feng.CMS\bin\netstandard2.0\Feng.CMS.Entity.pdb
+E:\工作目录\CMS\trunk\Feng.CMS.Entity\obj\Debug\netstandard2.0\Feng.CMS.Entity.csprojAssemblyReference.cache
