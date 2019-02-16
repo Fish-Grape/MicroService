@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Feng.ProductAuthWeb</name>
+    </assembly>
+    <members>
+        <member name="M:Feng.ProductAuthWeb.AutofacModuleRegister.Load(Autofac.ContainerBuilder)">
+            <summary>
+            装载autofac方式注册
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="P:Feng.ProductAuthWeb.Startup.AutofacContainer">
+            <summary>
+            AutofacDI容器
+            </summary>
+        </member>
+        <member name="M:Feng.ProductAuthWeb.Startup.CommonConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            公共配置
+            </summary>
+        </member>
+        <member name="M:Feng.ProductAuthWeb.Startup.ConfigRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            路由配置,支持区域
+            </summary>
+        </member>
+    </members>
+</doc>

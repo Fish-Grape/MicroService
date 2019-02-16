@@ -1,0 +1,9 @@
+﻿如果有
+1.清除.vs目录
+2.清除.vscode目录
+安装，进入目录外层
+dotnet new -i ./trunk
+
+
+使用：
+dotnet new fdp -n newproject -ip 127.0.0.1 -p 5000 -al 别名

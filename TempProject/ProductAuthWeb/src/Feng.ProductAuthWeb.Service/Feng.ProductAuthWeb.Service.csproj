@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feng.ProductAuthWeb.Entity\Feng.ProductAuthWeb.Entity.csproj" />
+    <ProjectReference Include="..\Feng.ProductAuthWeb.IService\Feng.ProductAuthWeb.IService.csproj" />
+    <ProjectReference Include="..\Feng.ProductAuthWeb.Model\Feng.ProductAuthWeb.Model.csproj" />
+  </ItemGroup>
+
+</Project>

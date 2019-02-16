@@ -1,0 +1,12 @@
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\bin\Debug\netstandard2.0\Feng.TempDemo.IService.deps.json
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\bin\Debug\netstandard2.0\Feng.TempDemo.IService.dll
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\bin\Debug\netstandard2.0\Feng.TempDemo.IService.pdb
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\bin\Debug\netstandard2.0\Feng.TempDemo.Model.dll
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\bin\Debug\netstandard2.0\Feng.TempDemo.Model.pdb
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.csprojAssemblyReference.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.csproj.CoreCompileInputs.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.AssemblyInfoInputs.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.AssemblyInfo.cs
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.csproj.CopyComplete
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.dll
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.IService\obj\Debug\netstandard2.0\Feng.TempDemo.IService.pdb

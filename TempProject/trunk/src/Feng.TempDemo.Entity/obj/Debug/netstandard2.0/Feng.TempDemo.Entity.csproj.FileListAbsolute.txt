@@ -1,0 +1,9 @@
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\bin\Debug\netstandard2.0\Feng.TempDemo.Entity.deps.json
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\bin\Debug\netstandard2.0\Feng.TempDemo.Entity.dll
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\bin\Debug\netstandard2.0\Feng.TempDemo.Entity.pdb
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.csprojAssemblyReference.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.csproj.CoreCompileInputs.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.AssemblyInfoInputs.cache
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.AssemblyInfo.cs
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.dll
+E:\工作目录\TempProject\trunk\src\Feng.TempDemo.Entity\obj\Debug\netstandard2.0\Feng.TempDemo.Entity.pdb

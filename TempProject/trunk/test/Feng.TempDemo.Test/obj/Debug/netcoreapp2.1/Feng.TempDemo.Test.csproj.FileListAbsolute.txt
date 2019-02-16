@@ -1,0 +1,14 @@
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Feng.TempDemo.Test.deps.json
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Feng.TempDemo.Test.runtimeconfig.json
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Feng.TempDemo.Test.runtimeconfig.dev.json
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Feng.TempDemo.Test.dll
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\bin\Debug\netcoreapp2.1\Feng.TempDemo.Test.pdb
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.csprojAssemblyReference.cache
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.csproj.CoreCompileInputs.cache
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.AssemblyInfoInputs.cache
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.AssemblyInfo.cs
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.dll
+E:\工作目录\TempProject\trunk\test\Feng.TempDemo.Test\obj\Debug\netcoreapp2.1\Feng.TempDemo.Test.pdb

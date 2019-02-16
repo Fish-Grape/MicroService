@@ -1,0 +1,34 @@
+{ 
+    "author": "Feng", 
+    "classifications": [ "Web/WebAPI"],
+    "name": "FengDemo", 
+    "identity": "FengDemoProject", 
+    "shortName": "fdp",
+    "tags": 
+    { 
+        "language": "C#", 
+        "type": "project"
+    }, 
+    "sourceName": "TempDemo",
+    "preferNameDirectory": true,
+    "symbols": {
+      "ip": {
+        "type": "parameter",
+        "dataType": "string",
+        "defaultValue": "127.0.0.1",
+        "replaces": "replace_ip"
+      },
+      "port": {
+        "type": "parameter",
+        "dataType": "int",
+        "defaultValue": "5000",
+        "replaces": "replace_port"
+      },
+      "alias": {
+        "type": "parameter",
+        "dataType": "string",
+        "defaultValue": "temp",
+        "replaces": "alias_name"
+      }
+  }
+}
